@@ -1,0 +1,10 @@
+RichTextLabel
+TileMapLayer
+TileMap
+CanvasLayer
+AnimatedSprite2D
+AudioStreamPlayer2D
+CharacterBody2D
+Camera2D
+Sprite2D
+CollisionShape2D

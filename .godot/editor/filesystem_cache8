@@ -1,0 +1,27 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1739136298
+icon.svg::CompressedTexture2D::5343413072472138421::1739044069::1739044074::1::::<><>::
+::res://assets/::1739135499
+hero.png::CompressedTexture2D::2227657795264320609::1739047367::1739051964::1::::<><>::
+TX hero.png::CompressedTexture2D::5875410804133550253::1739049548::1739051964::1::::<><>::
+TX Plant.png::CompressedTexture2D::7620125797034402849::1739044138::1739051964::1::::<><>::
+TX Player.png::CompressedTexture2D::8885565183806355481::1739044138::1739051964::1::::<><>::
+TX Props.png::CompressedTexture2D::8885217811001561506::1739044138::1739051964::1::::<><>::
+TX Shadow Plant.png::CompressedTexture2D::5397132968579522921::1739044138::1739051964::1::::<><>::
+TX Shadow.png::CompressedTexture2D::1386768454661942201::1739044138::1739051964::1::::<><>::
+TX spirit.png::CompressedTexture2D::8140962279255871978::1739059752::1739059786::1::::<><>::
+TX Struct.png::CompressedTexture2D::5797358975754246703::1739044138::1739051964::1::::<><>::
+TX Tileset Grass.png::CompressedTexture2D::8272601962730333504::1739044138::1739051964::1::::<><>::
+TX Tileset Stone Ground.png::CompressedTexture2D::8870547422131504414::1739044138::1739051964::1::::<><>::
+TX Tileset Wall.png::CompressedTexture2D::6229286927816893457::1739044138::1739051964::1::::<><>::
+TX_icons.png::CompressedTexture2D::5693986336083968360::1739135474::1739135499::1::::<><>::
+::res://assets/audio/::1739051614
+Our Mountain.mp3::AudioStreamMP3::6607093269734803688::1739051571::1739051614::1::::<><>::
+::res://scenes/::1739136286
+hero.tscn::PackedScene::3879319645924167730::1739135100::0::1::::<><>::res://scripts/hero.gd<>uid://cpydfmd11xqtp::::res://assets/TX hero.png
+main.tscn::PackedScene::7692935090716979355::1739136286::0::1::::<><>::uid://dp4kss2tbf1pc::::res://assets/TX Tileset Grass.png<>uid://dbwt5vnnjraev::::res://scenes/spirit.tscn<>uid://bvjf3e6tfj31w::::res://scenes/hero.tscn<>res://scripts/camera.gd<>uid://c1er4jeu82joa::::res://assets/audio/Our Mountain.mp3<>uid://cnehegiq2nw1e::::res://assets/TX_icons.png
+spirit.tscn::PackedScene::7276075525662526613::1739135100::0::1::::<><>::res://scripts/spirit.gd<>uid://dn8spu8rbngle::::res://assets/TX spirit.png
+::res://scripts/::1739134857
+camera.gd::GDScript::-1::1739134857::0::1::::<>Camera2D<>::
+hero.gd::GDScript::-1::1739127026::0::1::::<>CharacterBody2D<>::
+spirit.gd::GDScript::-1::1739060456::0::1::::<>CharacterBody2D<>::
