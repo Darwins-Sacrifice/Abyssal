@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=4 uid="uid://dhurrtv4k8gwp"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_3bstg"]
-[ext_resource type="Texture2D" uid="uid://dp4kss2tbf1pc" path="res://assets/TX Tileset Grass.png" id="1_lb78l"]
+[ext_resource type="Texture2D" uid="uid://dp4kss2tbf1pc" path="res://assets/image/TX Tileset Grass.png" id="1_lb78l"]
 [ext_resource type="PackedScene" uid="uid://dbwt5vnnjraev" path="res://scenes/spirit.tscn" id="2_qbg7u"]
 [ext_resource type="PackedScene" uid="uid://bvjf3e6tfj31w" path="res://scenes/hero.tscn" id="3_7eet3"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_ra7jd"]
 [ext_resource type="AudioStream" uid="uid://c1er4jeu82joa" path="res://assets/audio/Our Mountain.mp3" id="4_tcxqq"]
-[ext_resource type="PackedScene" uid="uid://e63vroi4rtte" path="res://scenes/hud.tscn" id="6_dw7ke"]
+[ext_resource type="PackedScene" uid="uid://bxrgd1mrh0nkc" path="res://scenes/hud.tscn" id="6_dw7ke"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_giat6"]
 texture = ExtResource("1_lb78l")

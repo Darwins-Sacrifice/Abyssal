@@ -31,6 +31,14 @@ func read_input():
 		speed = speed * run_mod
 		sprite.speed_scale = sprite.speed_scale*run_mod
 	
+	if Input.is_action_just_pressed("action1"):
+		action(1)
+	if Input.is_action_just_pressed("action2"):
+		action(2)
+	if Input.is_action_just_pressed("action3"):
+		action(3)
+	if Input.is_action_just_pressed("action4"):
+		action(4)
 	velocity = velocity.normalized()*speed
 	match direction:
 		Vector2(0,0):
@@ -51,8 +59,17 @@ func read_input():
 			sprite.play("walk_left")
 		Vector2(1,1):
 			sprite.play("walk_down")
-	
 	move_and_slide()
-	
+
+func action(slot):
+	match slot:
+		1: 
+				var bomb = Sprite2D.new()
+				add_child(bomb)
+				bomb.texture = load("res://assets/image/bomb.png")
+				bomb.position = Vector2(0,0)
+				bomb.visible = true
+				bomb.z_index = 3
+
 func _physics_process(_delta):
 	read_input()

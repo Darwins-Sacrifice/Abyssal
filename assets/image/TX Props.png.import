@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xgjbrvi0tttb"
-path="res://.godot/imported/potion.jpg-7aa5374a3b729f036865b657067715fa.ctex"
+uid="uid://dyuciersn6ifq"
+path="res://.godot/imported/TX Props.png-2c036a7008f3c40471effe8237329706.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/potion.jpg"
-dest_files=["res://.godot/imported/potion.jpg-7aa5374a3b729f036865b657067715fa.ctex"]
+source_file="res://assets/image/TX Props.png"
+dest_files=["res://.godot/imported/TX Props.png-2c036a7008f3c40471effe8237329706.ctex"]
 
 [params]
 
