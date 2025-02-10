@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cpw8uwlm0r2xv"]
+
+[node name="Potion" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
