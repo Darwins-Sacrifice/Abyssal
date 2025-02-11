@@ -1,0 +1,11 @@
+res://scenes/main.tscn
+res://assets/sprite/hero.tres
+res://scenes/hero.tscn
+res://scenes/spirit.tscn
+res://scripts/entity.gd
+res://scripts/spirit.gd
+res://scripts/hero.gd
+res://scenes/entity.tscn
+res://scripts/main.gd
+res://scripts/camera.gd
+res://assets/sprite/spirit.tres
