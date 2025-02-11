@@ -21,9 +21,9 @@ var cam_target = hero
 
 func _ready():
 	add_child(hero)
-	hero.init("player",Vector2(0,0),hero_sprite)
+	hero.init("hero",Vector2(100,100),hero_sprite)
 	add_child(spirit)
-	hero.init("player",Vector2(0,0),spirit_sprite)
+	spirit.init("spirit",Vector2(0,0),spirit_sprite)
 	camera = Camera2D.new()
 	add_child(camera)
 

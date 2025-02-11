@@ -9,3 +9,6 @@ res://scenes/entity.tscn
 res://scripts/main.gd
 res://scripts/camera.gd
 res://assets/sprite/spirit.tres
+res://assets/map/grass.tres
+res://scenes/overworld.tscn
+res://scenes/maps/overworld.tscn

@@ -1,1 +1,3 @@
+AtlasTexture
+TileSet
 SpriteFrames
