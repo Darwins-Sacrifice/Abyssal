@@ -1,9 +1,16 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1739241821
-::res://assets/::1739241909
-::res://assets/audio/::1739225242
-Our Mountain.mp3::AudioStreamMP3::6607093269734803688::1739225137::1739225242::1::::<><>::
-::res://assets/image/::1739236853
+::res://::1739424104
+::res://actions/::1739424766
+::res://actions/flash/::1739426192
+flash.tscn::PackedScene::507864625373026637::1739426515::0::1::::<><>::res://actions/flash/flash.gd
+flash.gd::GDScript::-1::1739426515::0::1::::<>Node2D<>::
+::res://actions/nothing/::1739426125
+nothing.tscn::PackedScene::7704288393715698069::1739426515::0::1::::<><>::res://actions/nothing/nothing.gd
+nothing.gd::GDScript::-1::1739426390::0::1::::<>Node2D<>::
+::res://assets/::1739336851
+::res://assets/audio/::1739332493
+Our Mountain.mp3::AudioStreamMP3::6607093269734803688::1739225137::1739332493::1::::<><>::
+::res://assets/image/::1739337876
 bomb.png::CompressedTexture2D::318451929483781804::1739225138::1739225242::1::::<><>::
 hero.png::CompressedTexture2D::2227657795264320609::1739225138::1739225242::1::::<><>::
 icon.png::CompressedTexture2D::7614871336762869891::1739225138::1739236853::1::::<><>::
@@ -15,26 +22,27 @@ TX Player.png::CompressedTexture2D::8885565183806355481::1739225138::1739225242:
 TX Props.png::CompressedTexture2D::8885217811001561506::1739225138::1739225242::1::::<><>::
 TX Shadow Plant.png::CompressedTexture2D::5397132968579522921::1739225138::1739225242::1::::<><>::
 TX Shadow.png::CompressedTexture2D::1386768454661942201::1739225138::1739225242::1::::<><>::
-TX spirit.png::CompressedTexture2D::8140962279255871978::1739225138::1739225242::1::::<><>::
+TX spirit.png::CompressedTexture2D::8140962279255871978::1739337835::1739337876::1::::<><>::
 TX Struct.png::CompressedTexture2D::5797358975754246703::1739225138::1739225242::1::::<><>::
 TX Tileset Grass.png::CompressedTexture2D::8272601962730333504::1739225138::1739225242::1::::<><>::
 TX Tileset Stone Ground.png::CompressedTexture2D::8870547422131504414::1739225138::1739225242::1::::<><>::
 TX Tileset Wall.png::CompressedTexture2D::6229286927816893457::1739225138::1739225242::1::::<><>::
-::res://assets/pixil/::1739225138
-::res://assets/sprite/::1739241783
-hero.tres::SpriteFrames::7946165123475423651::1739238206::0::1::::<><>::uid://cpydfmd11xqtp::::res://assets/image/TX hero.png
-spirit.tres::SpriteFrames::2626002680837370115::1739241783::0::1::::<><>::uid://dn8spu8rbngle::::res://assets/image/TX spirit.png
-::res://assets/tilemap/::1739241792
-grass.tres::TileSet::6165141408906097337::1739241783::0::1::::<><>::uid://dp4kss2tbf1pc::::res://assets/image/TX Tileset Grass.png
-::res://scenes/::1739242067
-entity.tscn::PackedScene::5537353581578234233::1739238962::0::1::::<><>::res://scripts/entity.gd
-hero.tscn::PackedScene::6603727605852990189::1739238962::0::1::::<><>::res://scripts/hero.gd
-main.tscn::PackedScene::7692935090716979355::1739242070::0::1::::<><>::res://scripts/main.gd<>uid://c6mckndd7f7c2::::res://scenes/overworld.tscn
-overworld.tscn::PackedScene::6973608032755772967::1739242031::0::1::::<><>::uid://ct3o8i41n5ky8::::res://assets/tilemap/grass.tres
-spirit.tscn::PackedScene::2646834795418338998::1739238962::0::1::::<><>::res://scripts/spirit.gd
-::res://scenes/maps/::1739242067
-::res://scripts/::1739239568
-entity.gd::GDScript::-1::1739241575::0::1::::Entity<>CharacterBody2D<>::
-hero.gd::GDScript::-1::1739241069::0::1::::<>Entity<>::
-main.gd::GDScript::-1::1739241586::0::1::::<>Node2D<>::
-spirit.gd::GDScript::-1::1739241426::0::1::::<>Entity<>::
+::res://assets/piskel/::1739337876
+TX spirit.png::CompressedTexture2D::8095296962492177376::1739337835::1739337876::1::::<><>::
+::res://assets/sprite/::1739420811
+hero.tres::SpriteFrames::7946165123475423651::1739420811::0::1::::<><>::uid://cpydfmd11xqtp::::res://assets/image/TX hero.png
+spirit.tres::SpriteFrames::2626002680837370115::1739420811::0::1::::<><>::uid://dn8spu8rbngle::::res://assets/image/TX spirit.png
+::res://assets/tilemap/::1739420811
+grass.tres::TileSet::6165141408906097337::1739420811::0::1::::<><>::uid://dp4kss2tbf1pc::::res://assets/image/TX Tileset Grass.png
+::res://scenes/::1739426042
+entity.tscn::PackedScene::5537353581578234233::1739422359::0::1::::<><>::res://scripts/entity.gd
+hero.tscn::PackedScene::6603727605852990189::1739327811::0::1::::<><>::res://scripts/hero.gd
+main.tscn::PackedScene::7692935090716979355::1739426042::0::1::::<><>::res://scripts/main.gd<>uid://c6mckndd7f7c2::::res://scenes/maps/overworld.tscn
+spirit.tscn::PackedScene::2646834795418338998::1739423471::0::1::::<><>::res://scripts/spirit.gd
+::res://scenes/maps/::1739332668
+overworld.tscn::PackedScene::6973608032755772967::1739332668::0::1::::<><>::uid://ct3o8i41n5ky8::::res://assets/tilemap/grass.tres
+::res://scripts/::1739425895
+entity.gd::GDScript::-1::1739426503::0::1::::Entity<>CharacterBody2D<>::
+hero.gd::GDScript::-1::1739426220::0::1::::<>Entity<>::
+main.gd::GDScript::-1::1739422359::0::1::::<>Node2D<>::
+spirit.gd::GDScript::-1::1739421911::0::1::::<>Entity<>::

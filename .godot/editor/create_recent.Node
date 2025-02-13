@@ -1,11 +1,11 @@
+AnimatedSprite2D
+CollisionShape2D
+Node2D
+AudioStreamPlayer2D
 TileMapLayer
 CharacterBody2D
-CollisionShape2D
-AnimatedSprite2D
 Camera2D
-Node2D
 Sprite2D
 RichTextLabel
 TileMap
 CanvasLayer
-AudioStreamPlayer2D

@@ -1,55 +1,36 @@
 extends Entity
 
+# Load Actions
+var nothing = load_action("nothing")
+var flash = load_action("flash")
+
+var equipped_actions: Array = [nothing,flash,nothing,nothing,nothing]
+var active_slot: int = 0
+
 func _physics_process(_delta):
 	read_input()
 	move()
-	print_debug((direction))
 
 func read_input():
-	velocity = Vector2()
-	if moving: direction = Vector2()
 	moving = false
-	if Input.is_action_pressed("hero_up"):
-		if Input.is_action_pressed("hero_down"): direction.y = 0
-		else: 
-			direction.y = -1
-			moving = true
-	if Input.is_action_pressed("hero_down"):
-		if Input.is_action_pressed("hero_up"): direction.y = 0
-		else: 
-			direction.y = 1
-			moving = true
-	if Input.is_action_pressed("hero_left"):
-		if Input.is_action_pressed("hero_right"): direction.x = 0
-		else: 
-			direction.x = -1
-			moving = true
-	if Input.is_action_pressed("hero_right"):
-		if Input.is_action_pressed("hero_left"): direction.x = 0
-		else: 
-			direction.x = 1
-			moving = true
-	if Input.is_action_pressed("run"):
-		set_speed(run_speed)
-	else:
-		set_speed(base_speed)
-	if moving == true:
-		velocity = direction.normalized()*speed
+	running = false
+	if Input.is_action_pressed("up") || Input.is_action_pressed("down") || Input.is_action_pressed("left") || Input.is_action_pressed("right"):
+		direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+		direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+		moving = true
+		if Input.is_action_pressed("run"): running = true
+	if moving:
+		if running: velocity = direction.normalized()*run_speed
+		else: velocity = direction.normalized()*base_speed
+	else: velocity = Vector2()
+	if Input.is_action_just_pressed("cycle_action_left"):
+		if active_slot > 0: active_slot -= 1
+		else: active_slot = equipped_actions.size()-1
+	if Input.is_action_just_pressed("cycle_action_right"):
+		if active_slot < equipped_actions.size()-1: active_slot += 1
+		else: active_slot = 0
+	if Input.is_action_just_pressed("cast"):
+		execute_action(active_slot)
 
-func move():
-	match direction:
-		Vector2(0,0):
-			sprite.stop()
-		Vector2(0,-1):
-			if moving: sprite.play("up")
-			else:sprite.play("up_idle")
-		Vector2(0,1):
-			if moving: sprite.play("down")
-			else:sprite.play("down_idle")
-		Vector2(-1,0),Vector2(-1,-1),Vector2(-1,1):
-			if moving: sprite.play("left")
-			else:sprite.play("left_idle")
-		Vector2(1,0), Vector2(1,1),Vector2(1,-1):
-			if moving: sprite.play("right")
-			else:sprite.play("right_idle")
-	move_and_slide()
+func execute_action(slot: int):
+	equipped_actions[slot].cast(self, null, direction.normalized())

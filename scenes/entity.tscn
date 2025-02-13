@@ -1,21 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck5ln0tlknqib"]
+[gd_scene load_steps=2 format=3 uid="uid://ck5ln0tlknqib"]
 
 [ext_resource type="Script" path="res://scripts/entity.gd" id="1_k6oep"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xboxn"]
-animations = []
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wictt"]
-size = Vector2(16, 16)
 
 [node name="Entity" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_k6oep")
-
-[node name="sprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_xboxn")
-animation = &""
-
-[node name="hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wictt")
