@@ -4,8 +4,8 @@ extends Entity
 var nothing = load_action("nothing")
 var flash = load_action("flash")
 
-var equipped_actions: Array = [nothing,flash,nothing,nothing,nothing]
-var active_slot: int = 0
+var equippedActions: Array = [nothing,flash,nothing,nothing,nothing]
+var activeSlot: int = 0
 
 func _physics_process(_delta):
 	read_input()
@@ -20,17 +20,17 @@ func read_input():
 		moving = true
 		if Input.is_action_pressed("run"): running = true
 	if moving:
-		if running: velocity = direction.normalized()*run_speed
-		else: velocity = direction.normalized()*base_speed
+		if running: velocity = direction.normalized()*runSpeed
+		else: velocity = direction.normalized()*baseSpeed
 	else: velocity = Vector2()
 	if Input.is_action_just_pressed("cycle_action_left"):
-		if active_slot > 0: active_slot -= 1
-		else: active_slot = equipped_actions.size()-1
+		if activeSlot > 0: activeSlot -= 1
+		else: activeSlot = equippedActions.size()-1
 	if Input.is_action_just_pressed("cycle_action_right"):
-		if active_slot < equipped_actions.size()-1: active_slot += 1
-		else: active_slot = 0
+		if activeSlot < equippedActions.size()-1: activeSlot += 1
+		else: activeSlot = 0
 	if Input.is_action_just_pressed("cast"):
-		execute_action(active_slot)
+		execute_action(activeSlot)
 
 func execute_action(slot: int):
-	equipped_actions[slot].cast(self, null, direction.normalized())
+	equippedActions[slot].cast(self, null, direction.normalized())

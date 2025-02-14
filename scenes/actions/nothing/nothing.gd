@@ -1,4 +1,4 @@
 extends Node2D
 
-func cast(caster:Entity, target:Entity, direction: Vector2):
-	print_debug("I did NOTHING!")
+func cast(_caster:Entity, _target:Entity, _direction: Vector2):
+	pass

@@ -1,8 +1,10 @@
+TextureRect
+HBoxContainer
+TileMapLayer
 AnimatedSprite2D
 CollisionShape2D
 Node2D
 AudioStreamPlayer2D
-TileMapLayer
 CharacterBody2D
 Camera2D
 Sprite2D

@@ -1,6 +1,6 @@
 extends Entity
 
-var click_pos : Vector2 = spawn_point
+var click_pos : Vector2 = spawnPoint
 
 func _physics_process(_delta):
 	read_input()
@@ -14,7 +14,7 @@ func read_input():
 	if position.distance_to(click_pos) >10:
 		moving = true
 	if moving:
-		velocity = direction.normalized()*base_speed
+		velocity = direction.normalized()*baseSpeed
 	else: 
 		velocity = Vector2()
 	direction = round(direction.normalized())

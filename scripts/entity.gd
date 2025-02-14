@@ -8,21 +8,22 @@ class_name Entity
 # 4 - Obstacles
 # 5 - Spirit
 
-var entity_type : String
+var entityType : String
 var sprite : AnimatedSprite2D
 var hitbox : CollisionShape2D
-var spawn_point : Vector2 = Vector2()
+var spawnPoint : Vector2 = Vector2()
 var direction : Vector2 = Vector2()
-var base_speed : int
-var run_speed : int
+var baseSpeed : int
+var runSpeed : int
 var moving : bool = false
 var running : bool = false
+var maxHP: int = 1
 var hp : int = 1
 
 func init(type: String, spawn: Vector2, image: SpriteFrames):
-	entity_type = type
-	spawn_point = spawn
-	position = spawn_point
+	entityType = type
+	spawnPoint = spawn
+	position = spawnPoint
 	sprite = AnimatedSprite2D.new()
 	sprite.sprite_frames = image
 	sprite.play("down_idle")
@@ -33,22 +34,22 @@ func init(type: String, spawn: Vector2, image: SpriteFrames):
 	hitbox.shape.size = sprite.sprite_frames.get_frame_texture("down_idle",0).get_size()
 	add_child(hitbox)
 	visible = true
-	match entity_type:
+	match entityType:
 		"hero":
-			hp = 10
-			base_speed = 200
-			run_speed = 400
+			maxHP = 10
+			baseSpeed = 96
 			set_collision_layer_value(1,true)
 			for i in [2,3,4]:
 				set_collision_mask_value(i,true)
 		"spirit":
-			base_speed = 300
-			run_speed = 400
+			baseSpeed = 256
 			set_collision_layer_value(5,true)
+	runSpeed = round(baseSpeed * 1.5)
+	heal(maxHP)
 
 func move():
 	move_and_slide()
-	if running: sprite.speed_scale = float(run_speed)/float(base_speed)
+	if running: sprite.speed_scale = float(runSpeed)/float(baseSpeed)
 	else: sprite.speed_scale = 1
 	match direction:
 		Vector2(0,-1):
@@ -68,18 +69,22 @@ func move():
 				sprite.play("right_idle")
 				direction = Vector2(1,0)
 
-func load_action(action_name:String):
-	var scene = load("res://scenes/actions/"+action_name+"/"+action_name+".tscn")
-	var scene_node = scene.instantiate()
-	add_child(scene_node)
-	return scene_node
+func load_action(actionName:String):
+	var scene = load("res://scenes/actions/"+actionName+"/"+actionName+".tscn")
+	var sceneNode = scene.instantiate()
+	add_child(sceneNode)
+	return sceneNode
 
 func take_damage(dmg : int):
 	hp -= dmg
 	if hp <= 0: die()
 
+func heal(amt: int):
+	if hp + amt < maxHP: hp += amt
+	else: hp = maxHP
+
 func die():
-	if entity_type == "hero":
+	if entityType == "hero":
 		get_parent().end_game()
 	queue_free()
 
