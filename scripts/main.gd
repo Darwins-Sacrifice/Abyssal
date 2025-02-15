@@ -10,10 +10,12 @@ var spirit_sprite = preload("res://assets/sprite/spirit.tres")
 # Preload scenes
 var hero_scene = preload("res://scenes/hero.tscn")
 var spirit_scene = preload("res://scenes/spirit.tscn")
+var hud_scene = preload("res://scenes/hud.tscn")
 
 # Instances
 var hero = hero_scene.instantiate()
 var spirit = spirit_scene.instantiate()
+var hud = hud_scene.instantiate()
 
 # Variables
 var camera : Camera2D
@@ -27,14 +29,17 @@ func _ready():
 	add_child(spirit)
 	spirit.init("spirit",Vector2(0,0),spirit_sprite)
 	camera = Camera2D.new()
-	cam_target = hero
 	add_child(camera)
+	cam_target = hero
 	music = AudioStreamPlayer2D.new()
+	add_child(music)
 	music.attenuation = 0
 	music.max_distance = INF
 	music.stream = Our_Mountain
-	add_child(music)
 	music.play()
+	add_child(hud)
+	hud.init(hero)
+
 
 func _process(delta):
 	read_input()

@@ -30,7 +30,14 @@ func read_input():
 		if activeSlot < equippedActions.size()-1: activeSlot += 1
 		else: activeSlot = 0
 	if Input.is_action_just_pressed("cast"):
+		set_max_hp(maxHP+1)
 		execute_action(activeSlot)
 
 func execute_action(slot: int):
 	equippedActions[slot].cast(self, null, direction.normalized())
+
+func set_max_hp(amt:int):
+	maxHP = amt
+	get_parent().get_node("Hud").adjust_max_hp(maxHP)
+
+	

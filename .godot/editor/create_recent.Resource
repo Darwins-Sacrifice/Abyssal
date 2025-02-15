@@ -1,3 +1,4 @@
-AtlasTexture
+ImageTexture
 TileSet
+AtlasTexture
 SpriteFrames
