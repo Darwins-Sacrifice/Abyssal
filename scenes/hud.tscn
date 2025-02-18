@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_54noj"]
 
-[node name="Hud" type="CanvasLayer"]
+[node name="hud" type="CanvasLayer"]
 script = ExtResource("1_54noj")

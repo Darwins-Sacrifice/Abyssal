@@ -1,10 +1,13 @@
 extends Entity
 
 # Load Actions
-var nothing = load_action("nothing")
-var flash = load_action("flash")
+var nothing = load_action("nothing",1)
+var hurt_self = load_action("hurt_self",2)
+var raise_max_hp = load_action("raise_max_hp",3)
+var flash = load_action("flash",2)
+var heal_self = load_action("heal_self",3)
 
-var equippedActions: Array = [nothing,flash,nothing,nothing,nothing]
+var equippedActions: Array = [nothing,hurt_self,raise_max_hp,flash,heal_self] 
 var activeSlot: int = 0
 
 func _physics_process(_delta):
@@ -30,7 +33,6 @@ func read_input():
 		if activeSlot < equippedActions.size()-1: activeSlot += 1
 		else: activeSlot = 0
 	if Input.is_action_just_pressed("cast"):
-		set_max_hp(maxHP+1)
 		execute_action(activeSlot)
 
 func execute_action(slot: int):
@@ -38,6 +40,6 @@ func execute_action(slot: int):
 
 func set_max_hp(amt:int):
 	maxHP = amt
-	get_parent().get_node("Hud").adjust_max_hp(maxHP)
+	get_parent().hud.adjust_max_hp(maxHP)
 
 	

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c6mckndd7f7c2" path="res://scenes/maps/overworld.tscn" id="2_riv1x"]
 
-[node name="Main" type="Node2D"]
+[node name="main" type="Node2D"]
 script = ExtResource("1")
 
-[node name="Overworld" parent="." instance=ExtResource("2_riv1x")]
+[node name="overworld" parent="." instance=ExtResource("2_riv1x")]

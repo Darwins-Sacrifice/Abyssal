@@ -1,6 +1,7 @@
+Timer
 Sprite2D
-CanvasLayer
 TextureRect
+CanvasLayer
 HBoxContainer
 PanelContainer
 Container
@@ -11,4 +12,3 @@ AnimatedSprite2D
 CollisionShape2D
 Node2D
 AudioStreamPlayer2D
-CharacterBody2D

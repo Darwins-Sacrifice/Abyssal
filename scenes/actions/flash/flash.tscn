@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/actions/flash/flash.gd" id="1_kbme0"]
 
-[node name="Flash" type="Node2D"]
+[node name="flash" type="Node2D"]
 script = ExtResource("1_kbme0")

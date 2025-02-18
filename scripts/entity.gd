@@ -8,6 +8,7 @@ class_name Entity
 # 4 - Obstacles
 # 5 - Spirit
 
+var main : Node2D
 var entityType : String
 var sprite : AnimatedSprite2D
 var hitbox : CollisionShape2D
@@ -17,10 +18,12 @@ var baseSpeed : int
 var runSpeed : int
 var moving : bool = false
 var running : bool = false
+var runMod : float = 1.5
 var maxHP: int = 1
 var hp : int = 1
 
 func init(type: String, spawn: Vector2, image: SpriteFrames):
+	main = get_parent()
 	entityType = type
 	spawnPoint = spawn
 	position = spawnPoint
@@ -42,10 +45,10 @@ func init(type: String, spawn: Vector2, image: SpriteFrames):
 			for i in [2,3,4]:
 				set_collision_mask_value(i,true)
 		"spirit":
-			baseSpeed = 256
+			baseSpeed = 216
 			set_collision_layer_value(5,true)
-	runSpeed = round(baseSpeed * 1.5)
-	heal(maxHP)
+	runSpeed = round(baseSpeed * runMod)
+	hp = maxHP
 
 func move():
 	move_and_slide()
@@ -69,23 +72,26 @@ func move():
 				sprite.play("right_idle")
 				direction = Vector2(1,0)
 
-func load_action(actionName:String):
+func load_action(actionName:String,actionLevel:int):
 	var scene = load("res://scenes/actions/"+actionName+"/"+actionName+".tscn")
 	var sceneNode = scene.instantiate()
 	add_child(sceneNode)
+	sceneNode.level = actionLevel
 	return sceneNode
 
-func take_damage(dmg : int):
-	hp -= dmg
+func take_damage(amt : int):
+	hp -= amt
+	if entityType == "hero":
+		main.hud.adjust_hp(-amt)
 	if hp <= 0: die()
 
 func heal(amt: int):
 	if hp + amt < maxHP: hp += amt
 	else: hp = maxHP
+	if entityType == "hero":
+		main.hud.adjust_hp(amt)
 
 func die():
 	if entityType == "hero":
 		get_parent().end_game()
 	queue_free()
-
-	
