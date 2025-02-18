@@ -2,12 +2,12 @@ extends Sprite2D
 
 var hudTileset = preload("res://assets/image/HUD_tileset.png")
 
-var heartIcon = Rect2(64, 0, 32, 32)
-var damagedIcon = Rect2(96, 0, 32, 32)
-var brokenIcon = Rect2(128, 0, 32, 32)
+var heartIcon = Rect2(2*tRes, 0, tRes, tRes)
+var damagedIcon = Rect2(3*tRes, 0, tRes, tRes)
+var brokenIcon = Rect2(4*tRes, 0, tRes, tRes)
 var dmgTimer : float = -1
-var status : String
 
+const tRes = 32
 const dmgDelay :float = .5
 
 func init():
@@ -15,7 +15,6 @@ func init():
 	scale = Vector2(0.8,0.8)
 	region_enabled = true
 	region_rect = heartIcon
-	status = "heart"
 
 func _physics_process(delta):
 	if dmgTimer > 0:

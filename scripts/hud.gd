@@ -2,17 +2,24 @@ extends CanvasLayer
 
 # Preload scenes
 var heart_scene = preload("res://scenes/heart.tscn")
+var action_slot_scene = preload("res://scenes/action_slot.tscn")
 
 var main : Node2D
 var hero : Entity
 var heart : Sprite2D
+var actionSlot : Sprite2D
 var hps : Array
 
 var hpBar : HBoxContainer
 var hpBox : TextureRect
+var actionBar : HBoxContainer
+var actionBox : TextureRect
 
 const hpBarLength = 256
 const hpBarPos = Vector2(64,476)
+const actionBarPos = Vector2(480,508)
+const numActions = 5
+const tRes = 32
 
 func init(player : Entity):
 	main = get_parent()
@@ -24,9 +31,21 @@ func init(player : Entity):
 	heart = heart_scene.instantiate()
 	hpBox.add_child(heart)
 	heart.init()
-	hpBar.add_theme_constant_override("separation", int(heart.region_rect.size.x*heart.scale.x))
+	hpBar.add_theme_constant_override("separation", int(tRes*heart.scale.x))
 	adjust_max_hp(hero.maxHP)
 	hero.heal(hero.maxHP)
+
+	actionBar = HBoxContainer.new()
+	add_child(actionBar)
+	actionBar.position = actionBarPos
+	actionBox = TextureRect.new()
+	actionSlot = action_slot_scene.instantiate()
+	actionBox.add_child(actionSlot)
+	actionSlot.init()
+	actionBar.add_theme_constant_override("separation", int(tRes+1))
+	for i in numActions:
+		var newBox= actionBox.duplicate()
+		actionBar.add_child(newBox)
 
 func _physics_process(_delta):
 	if hero.hp == 1:

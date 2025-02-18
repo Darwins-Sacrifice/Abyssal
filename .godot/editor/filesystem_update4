@@ -1,0 +1,11 @@
+res://scenes/main.tscn
+res://assets/sprite/hero.tres
+res://assets/sprite/spirit.tres
+res://assets/tilemap/grass.tres
+res://scenes/spirit.tscn
+res://scenes/hud.tscn
+res://scenes/entity.tscn
+res://scenes/hero.tscn
+res://scenes/heart.tscn
+res://scripts/action_slot.gd
+res://scripts/hud.gd
