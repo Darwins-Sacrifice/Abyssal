@@ -1,7 +1,4 @@
 extends Node2D
 
-var level : int
-var tooltip = ""
-
 func cast(caster:Entity, _target:Entity, _direction: Vector2):
-	caster.take_damage(level)
+	caster.take_damage(1)

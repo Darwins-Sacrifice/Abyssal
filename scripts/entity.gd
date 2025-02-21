@@ -12,6 +12,7 @@ var main : Node2D
 var entityType : String
 var sprite : AnimatedSprite2D
 var hitbox : CollisionShape2D
+var knownActions : Array
 var spawnPoint : Vector2 = Vector2()
 var direction : Vector2 = Vector2()
 var baseSpeed : int
@@ -72,11 +73,10 @@ func move():
 				sprite.play("right_idle")
 				direction = Vector2(1,0)
 
-func load_action(actionName:String,actionLevel:int):
+func load_action(actionName:String):
 	var scene = load("res://scenes/actions/"+actionName+"/"+actionName+".tscn")
 	var sceneNode = scene.instantiate()
 	add_child(sceneNode)
-	sceneNode.level = actionLevel
 	return sceneNode
 
 func take_damage(amt : int):

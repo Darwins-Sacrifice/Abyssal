@@ -14,10 +14,11 @@ var hpBar : HBoxContainer
 var hpBox : TextureRect
 var actionBar : HBoxContainer
 var actionBox : TextureRect
+var selectSlot : int
 
 const hpBarLength = 256
 const hpBarPos = Vector2(64,476)
-const actionBarPos = Vector2(480,508)
+const actionBarPos = Vector2(380,508)
 const numActions = 5
 const tRes = 32
 
@@ -42,10 +43,12 @@ func init(player : Entity):
 	actionSlot = action_slot_scene.instantiate()
 	actionBox.add_child(actionSlot)
 	actionSlot.init()
-	actionBar.add_theme_constant_override("separation", int(tRes+1))
+	actionBar.add_theme_constant_override("separation", int(tRes+5))
 	for i in numActions:
 		var newBox= actionBox.duplicate()
 		actionBar.add_child(newBox)
+	selectSlot = 1
+	select_action(selectSlot)
 
 func _physics_process(_delta):
 	if hero.hp == 1:
@@ -84,3 +87,8 @@ func adjust_hp(amt: int):
 				hps[i].get_node("heart").heal_heart()
 				heal -= 1
 			i += 1
+
+func select_action(slot: int):
+	actionBar.get_children()[selectSlot-1].get_node("action_slot").unselect()
+	selectSlot = slot
+	actionBar.get_children()[selectSlot-1].get_node("action_slot").select()

@@ -8,22 +8,26 @@ var hero_sprite = preload("res://assets/sprite/hero.tres")
 var spirit_sprite = preload("res://assets/sprite/spirit.tres")
 
 # Preload scenes
+var action_database_scene = preload("res://scenes/action_database.tscn")
 var hero_scene = preload("res://scenes/hero.tscn")
 var spirit_scene = preload("res://scenes/spirit.tscn")
 var hud_scene = preload("res://scenes/hud.tscn")
 
 # Instances
+var actionDatabase = action_database_scene.instantiate()
 var hero = hero_scene.instantiate()
 var spirit = spirit_scene.instantiate()
 var hud = hud_scene.instantiate()
 
 # Variables
+var DATA = actionDatabase.DATA
 var camera : Camera2D
 var cam_target : Entity
 var music : AudioStreamPlayer2D
 var clock : float = 0
 
 func _ready():
+	actionDatabase.init()
 	add_child(hero)
 	hero.init("hero",Vector2(100,100),hero_sprite)
 	add_child(spirit)
@@ -39,6 +43,9 @@ func _ready():
 	music.play()
 	add_child(hud)
 	hud.init(hero)
+	var heroActions = ["flash","nothing","heal_self","hurt_self","raise_max_hp"]
+	for i in heroActions.size():
+		hero.equip_action(heroActions[i-1],i)
 
 
 func _process(delta):
