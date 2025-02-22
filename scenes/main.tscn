@@ -18,6 +18,7 @@ tile_map_data = PackedByteArray("AABPAAAAAAACAAUAAABPAAEAAAACAAYAAABPAAIAAAACAAY
 tile_set = ExtResource("3_a701m")
 
 [node name="camera" type="Camera2D" parent="."]
+position = Vector2(528, 321)
 limit_left = 0
 limit_top = 0
 limit_right = 2560

@@ -1,3 +1,4 @@
+Button
 AnimatedSprite2D
 CollisionShape2D
 Camera2D
@@ -5,7 +6,6 @@ TileMapLayer
 Node
 Control
 CenterContainer
-Button
 VBoxContainer
 AudioStreamPlayer
 AudioStreamPlayer2D

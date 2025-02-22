@@ -22,7 +22,7 @@ var running : bool = false
 var maxHP: int = 1
 var hp : int = 1
 
-func init(type: String, spawn: Vector2, image: SpriteFrames):
+func init(type: String, spawn: Vector2):
 	main = get_parent()
 	sprite = $sprite
 	hitbox = $hitbox
@@ -34,7 +34,7 @@ func init(type: String, spawn: Vector2, image: SpriteFrames):
 		"hero":
 			maxHP = 10
 			baseSpeed = 96
-			runSpeed = baseSpeed * 1.5
+			runSpeed = round(float(baseSpeed) * 1.5)
 		"spirit":
 			baseSpeed = 216
 			runSpeed = baseSpeed * 8

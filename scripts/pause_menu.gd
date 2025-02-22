@@ -37,3 +37,10 @@ func _on_save_game_pressed() -> void:
 
 func _on_resume_pressed() -> void:
 	resume()
+
+
+func _on_main_menu_pressed() -> void:
+	var main_menu_scene = load("res://scenes/main_menu.tscn") 
+	get_tree().change_scene_to_packed(main_menu_scene)
+	resume()
+	
