@@ -4,7 +4,7 @@ extends CanvasLayer
 var heart_scene = preload("res://scenes/heart.tscn")
 var action_slot_scene = preload("res://scenes/action_slot.tscn")
 
-var main : Node2D
+var main : Node
 var hero : Entity
 var heart : Sprite2D
 var actionSlot : Sprite2D

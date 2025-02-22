@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1c5ot0t81f70"]
+[gd_scene load_steps=4 format=3 uid="uid://c1c5ot0t81f70"]
 
 [ext_resource type="Script" path="res://scripts/hero.gd" id="1_iyjnr"]
+[ext_resource type="SpriteFrames" uid="uid://dlhggcrbtc71p" path="res://assets/sprite/hero.tres" id="2_2qody"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ma6qh"]
+radius = 7.0
+height = 20.0
 
 [node name="hero" type="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 0
+collision_mask = 54
 script = ExtResource("1_iyjnr")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_2qody")
+animation = &"down_idle"
+frame_progress = 0.77364
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ma6qh")

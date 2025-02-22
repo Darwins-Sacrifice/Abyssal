@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 # Preload music
 var Our_Mountain = preload("res://assets/audio/Our Mountain.mp3")
@@ -12,19 +12,21 @@ var action_database_scene = preload("res://scenes/action_database.tscn")
 var hero_scene = preload("res://scenes/hero.tscn")
 var spirit_scene = preload("res://scenes/spirit.tscn")
 var hud_scene = preload("res://scenes/hud.tscn")
+var pause_scene = load("res://scenes/pause_menu.tscn") 
 
 # Instances
 var actionDatabase = action_database_scene.instantiate()
 var hero = hero_scene.instantiate()
 var spirit = spirit_scene.instantiate()
 var hud = hud_scene.instantiate()
-
+var pauseMenu = pause_scene.instantiate()
 # Variables
 var DATA = actionDatabase.DATA
 var camera : Camera2D
 var cam_target : Entity
-var music : AudioStreamPlayer2D
+var music : AudioStreamPlayer
 var clock : float = 0
+var paused : bool = false
 
 func _ready():
 	actionDatabase.init()
@@ -32,13 +34,10 @@ func _ready():
 	hero.init("hero",Vector2(100,100),hero_sprite)
 	add_child(spirit)
 	spirit.init("spirit",Vector2(0,0),spirit_sprite)
-	camera = Camera2D.new()
-	add_child(camera)
+	camera = $camera
 	cam_target = hero
-	music = AudioStreamPlayer2D.new()
+	music = AudioStreamPlayer.new()
 	add_child(music)
-	music.attenuation = 0
-	music.max_distance = INF
 	music.stream = Our_Mountain
 	music.play()
 	add_child(hud)
@@ -49,16 +48,18 @@ func _ready():
 
 
 func _process(delta):
-	read_input()
-	if cam_target != null: camera.position = cam_target.position
-	clock += delta
+	if !paused:
+		read_input()
+		if cam_target != null: $camera.position = cam_target.position
+		clock += delta
 
 func read_input():
-	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+	if Input.is_action_just_pressed("options"):
+		pauseMenu.pause(self)
 	if Input.is_action_just_pressed("camera_swap"):
 		if cam_target == hero: cam_target = spirit
 		else: cam_target = hero
 
 func end_game():
+	print_debug("GAME OVER - YOU DIED")
 	get_tree().quit()

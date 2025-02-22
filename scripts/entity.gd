@@ -8,7 +8,7 @@ class_name Entity
 # 4 - Obstacles
 # 5 - Spirit
 
-var main : Node2D
+var main : Node
 var entityType : String
 var sprite : AnimatedSprite2D
 var hitbox : CollisionShape2D
@@ -19,42 +19,35 @@ var baseSpeed : int
 var runSpeed : int
 var moving : bool = false
 var running : bool = false
-var runMod : float = 1.5
 var maxHP: int = 1
 var hp : int = 1
 
 func init(type: String, spawn: Vector2, image: SpriteFrames):
 	main = get_parent()
+	sprite = $sprite
+	hitbox = $hitbox
 	entityType = type
 	spawnPoint = spawn
 	position = spawnPoint
-	sprite = AnimatedSprite2D.new()
-	sprite.sprite_frames = image
 	sprite.play("down_idle")
-	sprite.speed_scale = 1
-	add_child(sprite)
-	hitbox = CollisionShape2D.new()
-	hitbox.shape = RectangleShape2D.new()
-	hitbox.shape.size = sprite.sprite_frames.get_frame_texture("down_idle",0).get_size()
-	add_child(hitbox)
-	visible = true
 	match entityType:
 		"hero":
 			maxHP = 10
 			baseSpeed = 96
-			set_collision_layer_value(1,true)
-			for i in [2,3,4]:
-				set_collision_mask_value(i,true)
+			runSpeed = baseSpeed * 1.5
 		"spirit":
 			baseSpeed = 216
-			set_collision_layer_value(5,true)
-	runSpeed = round(baseSpeed * runMod)
+			runSpeed = baseSpeed * 8
 	hp = maxHP
 
 func move():
-	move_and_slide()
-	if running: sprite.speed_scale = float(runSpeed)/float(baseSpeed)
+	if running:
+		sprite.speed_scale = float(runSpeed)/float(baseSpeed)
+		velocity = velocity * float(runSpeed)/float(baseSpeed)
 	else: sprite.speed_scale = 1
+	move_and_slide()
+	
+
 	match direction:
 		Vector2(0,-1):
 			if moving: sprite.play("up")
@@ -93,5 +86,5 @@ func heal(amt: int):
 
 func die():
 	if entityType == "hero":
-		get_parent().end_game()
+		main.end_game()
 	queue_free()

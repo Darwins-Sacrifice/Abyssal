@@ -24,19 +24,19 @@ var DATA = {  # All Actions In Game
 		title = "Heal",
 		row = 1,
 		column = 4,
-		tooltip = ""
+		tooltip = "Heal the caster by 1 hp."
 	},
 	hurt_self = { 
 		title = "Hurt Self",
 		row = 1,
 		column = 3,
-		tooltip = ""
+		tooltip = "Damage the caster by 1 hp."
 	},
 	raise_max_hp = { 
 		title = "Gain Max HP",
 		row = 1,
 		column = 5,
-		tooltip = ""
+		tooltip = "Raise the caster's max hp by 1 hp permanently"
 	}
 }
 

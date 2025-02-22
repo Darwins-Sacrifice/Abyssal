@@ -11,8 +11,9 @@ var equippedActions: Array = [nothing,nothing,nothing,nothing,nothing]
 var activeSlot: int = 1
 
 func _physics_process(_delta):
-	read_input()
-	move()
+	if !get_tree().root.get_node("main").paused:
+		read_input()
+		move()
 
 func read_input():
 	moving = false
@@ -23,8 +24,7 @@ func read_input():
 		moving = true
 		if Input.is_action_pressed("run"): running = true
 	if moving:
-		if running: velocity = direction.normalized()*runSpeed
-		else: velocity = direction.normalized()*baseSpeed
+		velocity = direction.normalized()*baseSpeed
 	else: velocity = Vector2()
 	if Input.is_action_just_pressed("cycle_action_left"):
 		if activeSlot > 1: activeSlot -= 1

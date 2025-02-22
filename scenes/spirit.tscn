@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdye8nvgt84te"]
+[gd_scene load_steps=4 format=3 uid="uid://bdye8nvgt84te"]
 
 [ext_resource type="Script" path="res://scripts/spirit.gd" id="1_hmokj"]
+[ext_resource type="SpriteFrames" uid="uid://bdob46307hvvn" path="res://assets/sprite/spirit.tres" id="2_adn70"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1noxh"]
+radius = 14.0
 
 [node name="spirit" type="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 8
+collision_mask = 32
 script = ExtResource("1_hmokj")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_adn70")
+animation = &"down_idle"
+frame_progress = 0.649503
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1noxh")
