@@ -1,90 +1,92 @@
 extends CharacterBody2D
 class_name Entity
 
-# Layers
-# 1 - Hero
-# 2 - Enemy
-# 3 - NPC
-# 4 - Obstacles
-# 5 - Spirit
+var INFO = {  #Entity Information - type, name, knownActions, spawnPoint
+	type = "_",
+	name = "_",
+	knownActions = [],
+	spawnPoint = Vector2()
+	}
+
+var STATS = { #Entity Stats - maxHP, HP, baseSpeed, runSpeed, runMod
+	maxHP = 1,
+	HP = 1,
+	baseSpeed = 0,
+	runSpeed = 0,
+	runMod = 1
+}
+
+var STATUS = { #Entity Status - moving, running, direction
+	moving = false,
+	running = false,
+	direction = Vector2()
+}
 
 var main : Node
-var entityType : String
-var sprite : AnimatedSprite2D
-var hitbox : CollisionShape2D
-var knownActions : Array
-var spawnPoint : Vector2 = Vector2()
-var direction : Vector2 = Vector2()
-var baseSpeed : int
-var runSpeed : int
-var moving : bool = false
-var running : bool = false
-var maxHP: int = 1
-var hp : int = 1
+var ACTION_DATA : Dictionary
 
-func init(type: String, spawn: Vector2):
+func init(entityType: String, entityName: String, spawn: Vector2):
 	main = get_parent()
-	sprite = $sprite
-	hitbox = $hitbox
-	entityType = type
-	spawnPoint = spawn
-	position = spawnPoint
-	sprite.play("down_idle")
-	match entityType:
-		"hero":
-			maxHP = 10
-			baseSpeed = 96
-			runSpeed = round(float(baseSpeed) * 1.5)
-		"spirit":
-			baseSpeed = 216
-			runSpeed = baseSpeed * 8
-	hp = maxHP
+	ACTION_DATA = main.ACTION_DATA
+	INFO["type"] = entityType
+	INFO["name"] = entityName
+	INFO["spawnPoint"] = spawn
+	position = INFO["spawnPoint"]
+	$Sprite.play("down_idle")
+	match INFO["type"]:
+		"Hero":
+			STATS["maxHP"] = 10
+			STATS["baseSpeed"] = 96
+			STATS["runSpeed"] = round(float(STATS["baseSpeed"]) * 1.5)
+		"Spirit":
+			STATS["baseSpeed"] = 216
+			STATS["runSpeed"] = round(float(STATS["baseSpeed"]) * 8)
+	STATS["runMod"] = float(STATS["runSpeed"])/float(STATS["baseSpeed"])
+	STATS["HP"] = STATS["maxHP"]
 
 func move():
-	if running:
-		sprite.speed_scale = float(runSpeed)/float(baseSpeed)
-		velocity = velocity * float(runSpeed)/float(baseSpeed)
-	else: sprite.speed_scale = 1
+	if STATUS["running"]:
+		$Sprite.speed_scale = STATS["runMod"]
+		velocity = velocity * STATS["runMod"]
+	else: $Sprite.speed_scale = 1
 	move_and_slide()
 	
-
-	match direction:
+	match STATUS["direction"]:
 		Vector2(0,-1):
-			if moving: sprite.play("up")
-			else:sprite.play("up_idle")
+			if STATUS["moving"]: $Sprite.play("up")
+			else:$Sprite.play("up_idle")
 		Vector2(0,1), Vector2(0,0):
-			if moving: sprite.play("down")
-			else:sprite.play("down_idle")
+			if STATUS["moving"]: $Sprite.play("down")
+			else:$Sprite.play("down_idle")
 		Vector2(-1,0),Vector2(-1,-1),Vector2(-1,1):
-			if moving: sprite.play("left")
+			if STATUS["moving"]: $Sprite.play("left")
 			else:
-				sprite.play("left_idle")
-				direction = Vector2(-1,0)
+				$Sprite.play("left_idle")
+				STATUS["direction"] = Vector2(-1,0)
 		Vector2(1,0), Vector2(1,1),Vector2(1,-1):
-			if moving: sprite.play("right")
+			if STATUS["moving"]: $Sprite.play("right")
 			else:
-				sprite.play("right_idle")
-				direction = Vector2(1,0)
+				$Sprite.play("right_idle")
+				STATUS["direction"] = Vector2(1,0)
 
 func load_action(actionName:String):
 	var scene = load("res://scenes/actions/"+actionName+"/"+actionName+".tscn")
 	var sceneNode = scene.instantiate()
-	add_child(sceneNode)
 	return sceneNode
 
 func take_damage(amt : int):
-	hp -= amt
-	if entityType == "hero":
+	STATS["HP"] -= amt
+	if INFO["type"] == "Hero":
 		main.hud.adjust_hp(-amt)
-	if hp <= 0: die()
+	if STATS["HP"] <= 0: die()
 
 func heal(amt: int):
-	if hp + amt < maxHP: hp += amt
-	else: hp = maxHP
-	if entityType == "hero":
+	if STATS["HP"] + amt < STATS["maxHP"]: STATS["HP"] += amt
+	else: STATS["HP"] = STATS["maxHP"]
+	if INFO["type"] == "Hero":
 		main.hud.adjust_hp(amt)
 
 func die():
-	if entityType == "hero":
+	if INFO["type"] == "Hero":
 		main.end_game()
 	queue_free()

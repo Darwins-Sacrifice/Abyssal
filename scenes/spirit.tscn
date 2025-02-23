@@ -1,20 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdye8nvgt84te"]
+[gd_scene load_steps=5 format=3 uid="uid://bdye8nvgt84te"]
 
 [ext_resource type="Script" path="res://scripts/spirit.gd" id="1_hmokj"]
 [ext_resource type="SpriteFrames" uid="uid://bdob46307hvvn" path="res://assets/sprite/spirit.tres" id="2_adn70"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1noxh"]
-radius = 14.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebewe"]
+radius = 16.0
 
-[node name="spirit" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yo83c"]
+radius = 13.0
+
+[node name="Spirit" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 32
+collision_mask = 64
 script = ExtResource("1_hmokj")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_adn70")
 animation = &"down_idle"
-frame_progress = 0.0643081
+frame_progress = 0.310335
 
-[node name="hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1noxh")
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ebewe")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="Hurt" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_yo83c")
+
+[node name="Raycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 32)
+collision_mask = 64
+collide_with_areas = true

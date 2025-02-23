@@ -9,7 +9,7 @@ colors = PackedColorArray(0.820256, 0.476969, 0.906352, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_7bxpl")
 fill_to = Vector2(1, 1)
 
-[node name="options_menu" type="Control"]
+[node name="OptionsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x1jdl")
 
-[node name="background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +28,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_cbooh")
 expand_mode = 2
 
-[node name="title" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="."]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 5
@@ -42,7 +42,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]OPTIONS"
 
-[node name="options_menu_buttons" type="VBoxContainer" parent="."]
+[node name="MenuButtons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -56,11 +56,11 @@ offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="close" type="Button" parent="options_menu_buttons"]
+[node name="Close" type="Button" parent="MenuButtons"]
 layout_mode = 2
 text = "CLOSE"
 
-[node name="quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -73,5 +73,5 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "QUIT GAME"
 
-[connection signal="pressed" from="options_menu_buttons/close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MenuButtons/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

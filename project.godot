@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Abyssal"
+config/name="Astreia"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
@@ -131,7 +131,8 @@ teleport_to_hero={
 2d_physics/layer_3="npc"
 2d_physics/layer_4="spirit"
 2d_physics/layer_5="objects"
-2d_physics/layer_6="obstacles"
+2d_physics/layer_6="ground_obstacles"
+2d_physics/layer_7="obstacles"
 
 [rendering]
 

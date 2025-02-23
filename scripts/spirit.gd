@@ -1,35 +1,39 @@
 extends Entity
 
-var click_pos : Vector2 = spawnPoint
-var teleporting = false
+var click_pos = Vector2()
+
+func spirit_init(): #Special Initialization for Spirit Only
+	click_pos = position
+	STATUS["teleporting"] = false
 
 func _physics_process(_delta):
-	if !get_tree().root.get_node("main").paused:
-		read_input()
+	if !main.paused:
+		read_input()	
 		move()
 
 func read_input():
-	moving = false
+	#Get direction and move status
 	if Input.is_action_just_pressed("teleport_to_hero"):
-		click_pos = main.hero.global_position
 		set_collision_mask_value(6,false)
-		teleporting = true
-		running = true
-	if !teleporting:
-		if Input.is_action_just_pressed("right_click"):
-			click_pos = get_global_mouse_position()
-	else: 
+		STATUS["teleporting"] = true
+		STATUS["running"] = true
+	if STATUS["teleporting"]:
 		click_pos = main.hero.global_position
 		if position.distance_to(click_pos) <100:
-			teleporting = false
-			running = false
 			set_collision_mask_value(6,true)
-	direction = (click_pos - position)
-	if position.distance_to(click_pos) >10:
-		moving = true
-	if moving:
-		velocity = direction.normalized()*baseSpeed
+			STATUS["teleporting"] = false
+			STATUS["running"] = false
 	else: 
-		velocity = Vector2()
-	direction = round(direction.normalized())
-	if !moving && direction.x != 0: direction.y = 0
+		if Input.is_action_just_pressed("right_click"):
+			click_pos = get_global_mouse_position()
+			
+	STATUS["direction"] = click_pos - position
+	if position.distance_to(click_pos) >10: STATUS["moving"] = true
+	else: STATUS["moving"] = false
+
+	#Set velocity and generalize direction
+	if STATUS["moving"]: 
+		velocity = STATUS["direction"].normalized()*STATS["baseSpeed"]
+	else: velocity = Vector2()
+	STATUS["direction"] = round(STATUS["direction"].normalized())
+	if !STATUS["moving"] && STATUS["direction"].x != 0: STATUS["direction"].y = 0

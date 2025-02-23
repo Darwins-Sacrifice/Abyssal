@@ -1,10 +1,10 @@
 extends Sprite2D
 
-var action_database_scene = preload("res://scenes/action_database.tscn")
+var database_scene = preload("res://scenes/DATABASE.tscn")
 var hudTileset = preload("res://assets/image/HUD_tileset.png")
 var actionTileset = preload("res://assets/image/Action_tileset.png")
 
-var DATA = action_database_scene.instantiate().DATA
+var ACTION_DATA = database_scene.instantiate().ACTION_DATA
 var actionSprite : Sprite2D
 var actionImage = Rect2(0, 0, tRes, tRes)
 var unselectedIcon = Rect2(5*tRes, 0, tRes, tRes)

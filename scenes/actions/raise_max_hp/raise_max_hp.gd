@@ -1,5 +1,6 @@
 extends Node2D
 
-func cast(caster:Entity, _target:Entity, _direction: Vector2):
-	caster.set_max_hp(caster.maxHP+1)
+var key = "raise_max_hp"
 
+func cast(caster:Entity, _target:Entity, _dir: Vector2):
+	caster.set_max_hp(caster.STATS["maxHP"]+1)

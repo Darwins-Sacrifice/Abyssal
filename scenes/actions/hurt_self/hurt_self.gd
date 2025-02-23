@@ -1,4 +1,6 @@
 extends Node2D
 
-func cast(caster:Entity, _target:Entity, _direction: Vector2):
+var key = "hurt_self"
+
+func cast(caster:Entity, _target:Entity, _dir: Vector2):
 	caster.take_damage(1)

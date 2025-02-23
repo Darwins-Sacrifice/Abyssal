@@ -1,70 +1,93 @@
 extends Entity
 
-# Load Actions
-var nothing = load_action("nothing")
-var hurt_self = load_action("hurt_self")
-var raise_max_hp = load_action("raise_max_hp")
-var flash = load_action("flash")
-var heal_self = load_action("heal_self")
-
-var equippedActions: Array = [nothing,nothing,nothing,nothing,nothing] 
-var activeSlot: int = 1
+func hero_init(): #Special Initialization for Hero Only
+	INFO["knownActions"] = []
+	STATUS["equippedActions"] = [null,null,null,null,null]
+	STATUS["activeSlot"] = 1
 
 func _physics_process(_delta):
-	if !get_tree().root.get_node("main").paused:
-		read_input()
+	if !main.paused:
+		read_input()	
 		move()
 
 func read_input():
-	moving = false
-	running = false
+	#Get direction and move status
 	if Input.is_action_pressed("up") || Input.is_action_pressed("down") || Input.is_action_pressed("left") || Input.is_action_pressed("right"):
-		direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-		direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-		moving = true
-		if Input.is_action_pressed("run"): running = true
-	if moving:
-		velocity = direction.normalized()*baseSpeed
-	else: velocity = Vector2()
-	if Input.is_action_just_pressed("cycle_action_left"):
-		if activeSlot > 1: activeSlot -= 1
-		else: activeSlot = equippedActions.size()
-		main.hud.select_action(activeSlot)
-	if Input.is_action_just_pressed("cycle_action_right"):
-		if activeSlot < equippedActions.size(): activeSlot += 1
-		else: activeSlot = 1
-		main.hud.select_action(activeSlot)
-	if Input.is_action_just_pressed("cast"):
-		execute_action(activeSlot)
-	if Input.is_action_just_pressed("quick_cast_1"):
-		activeSlot = 1
-		main.hud.select_action(activeSlot)
-		execute_action(activeSlot)
-	if Input.is_action_just_pressed("quick_cast_2"):
-		activeSlot = 2
-		main.hud.select_action(activeSlot)
-		execute_action(activeSlot)
-	if Input.is_action_just_pressed("quick_cast_3"):
-		activeSlot = 3
-		main.hud.select_action(activeSlot)
-		execute_action(activeSlot)
-	if Input.is_action_just_pressed("quick_cast_4"):
-		activeSlot = 4
-		main.hud.select_action(activeSlot)
-		execute_action(activeSlot)
-	if Input.is_action_just_pressed("quick_cast_5"):
-		activeSlot = 5
-		main.hud.select_action(activeSlot)
-		execute_action(activeSlot)
-
-func execute_action(slot: int):
-	equippedActions[slot-1].cast(self, null, direction.normalized())
-
-func set_max_hp(amt:int):
-	maxHP = amt
-	get_parent().hud.adjust_max_hp(maxHP)
-
-func equip_action(n : String, slot : int):
-	equippedActions[slot-1] = load_action(n)
-	main.hud.actionBar.get_children()[slot-1].get_node("action_slot").get_node("actionSprite").region_rect = main.DATA[n]["region"]
+		STATUS["direction"].x = Input.get_action_strength("right") - Input.get_action_strength("left")
+		STATUS["direction"].y = Input.get_action_strength("down") - Input.get_action_strength("up")
+		STATUS["moving"] = true
+	else: STATUS["moving"] = false
+	if Input.is_action_pressed("run") && STATUS["moving"]: 
+		STATUS["running"] = true
+	else: STATUS["running"] = false
 	
+	#Set velocity
+	if STATUS["moving"]:
+		velocity = STATUS["direction"].normalized()*STATS["baseSpeed"]
+	else: velocity = Vector2()
+
+	#Get other inputs
+	if Input.is_action_just_pressed("cycle_action_left") || Input.is_action_just_pressed("cycle_action_right"):
+		set_active_slot(STATUS["activeSlot"] + Input.get_action_strength("cycle_action_right") - Input.get_action_strength("cycle_action_left"))
+	
+	if Input.is_action_just_pressed("cast"):
+		execute_action(STATUS["activeSlot"])
+	if Input.is_action_just_pressed("quick_cast_1"):
+		set_active_slot(1)
+		execute_action(1)
+	if Input.is_action_just_pressed("quick_cast_2"):
+		set_active_slot(2)
+		execute_action(2)
+	if Input.is_action_just_pressed("quick_cast_3"):
+		set_active_slot(3)
+		execute_action(3)
+	if Input.is_action_just_pressed("quick_cast_4"):
+		set_active_slot(4)
+		execute_action(4)
+	if Input.is_action_just_pressed("quick_cast_5"):
+		set_active_slot(5)
+		execute_action(5)
+
+func execute_action(i: int):
+	var executableAct = STATUS["equippedActions"][i-1]
+	var target = null
+	if ACTION_DATA[executableAct.key]["targeted"]:
+		#Get Target
+		pass
+	executableAct.cast(self, target, STATUS["direction"].normalized())
+
+func set_max_hp(amt: int):
+	STATS["maxHP"] = amt
+	main.hud.adjust_max_hp(STATS["maxHP"])
+
+func set_active_slot(i: int):
+		STATUS["activeSlot"] = i
+		if STATUS["activeSlot"] > STATUS["equippedActions"].size(): STATUS["activeSlot"] = 1
+		if STATUS["activeSlot"] < 1: STATUS["activeSlot"] = STATUS["equippedActions"].size()
+		main.hud.select_slot(STATUS["activeSlot"])
+
+func learn_action(actionKey: String):
+	var newAction = load_action(actionKey)
+	var learnable = true
+	for known in INFO["knownActions"]:
+		if known.key == newAction.key:
+			learnable = false
+	if learnable: INFO["knownActions"].push_back(newAction)
+
+func learn_action_set(actionSet: Array):
+	for i in actionSet.size():
+		learn_action(actionSet[i])
+
+func equip_action(actionKey: String, i : int):
+	var newAction = load_action(actionKey)
+	var equipable = false
+	for known in INFO["knownActions"]:
+		if known.key == newAction.key:
+			equipable = true
+	if equipable:
+		STATUS["equippedActions"][i-1] = newAction
+		main.hud.get_slot_sprite(i).region_rect = main.ACTION_DATA[newAction.key]["region"]
+
+func equip_action_set(actionSet: Array):
+	for i in actionSet.size():
+		equip_action(actionSet[i-1],i)

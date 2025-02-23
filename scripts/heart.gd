@@ -17,12 +17,11 @@ func init():
 	region_rect = heartIcon
 
 func _physics_process(delta):
-	if !get_tree().root.get_node("main").paused:
-		if dmgTimer > 0:
-			dmgTimer -= delta
-		else: if dmgTimer != -1:
-			region_rect = brokenIcon
-			dmgTimer = -2
+	if dmgTimer > 0:
+		dmgTimer -= delta
+	else: if dmgTimer != -1:
+		region_rect = brokenIcon
+		dmgTimer = -2
 
 func damage_heart():
 	region_rect = damagedIcon
