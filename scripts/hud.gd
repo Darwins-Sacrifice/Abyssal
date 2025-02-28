@@ -56,7 +56,7 @@ func init():
 	select_slot(selectedSlot)
 
 func _physics_process(_delta):
-	if hero.STATS["HP"] == 1: shake_hp()
+	if hero.STATUS["HP"] == 1: shake_hp()
 	else: if heartBoxes != []: heartBoxes[0].position = Vector2(0,0)
 
 func adjust_max_hp(total:int):

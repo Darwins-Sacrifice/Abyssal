@@ -3,15 +3,12 @@ extends Node
 # Preload music
 var Our_Mountain = preload("res://assets/audio/Our Mountain.mp3")
 
-# Preload sprites
-var hero_sprite = preload("res://assets/sprite/hero.tres")
-var spirit_sprite = preload("res://assets/sprite/spirit.tres")
-
 # Preload scenes
 var hero_scene = preload("res://scenes/hero.tscn")
 var spirit_scene = preload("res://scenes/spirit.tscn")
 var hud_scene = preload("res://scenes/hud.tscn")
 var pause_menu_scene = load("res://scenes/pause_menu.tscn") 
+var soldier_scene = preload("res://scenes/soldier.tscn")
 
 # Instances
 var hero = hero_scene.instantiate()
@@ -24,6 +21,7 @@ var pauseMenu = pause_menu_scene.instantiate()
 @onready var ACTION_DATA = $DATABASE.ACTION_DATA
 @onready var themeMusic = $ThemeMusic
 @onready var camera = $Camera
+@onready var world = $World_Map
 
 var clock : float = 0
 var paused : bool = false
@@ -32,13 +30,14 @@ func _ready():
 	camera.init()
 
 	themeMusic.stream = Our_Mountain
+	themeMusic.volume_db = -5
 	themeMusic.play()
 
-	add_child(hero)
-	hero.init("Hero", "Kaladin",Vector2())
+	world.add_child(hero)
+	hero.init("Hero", "Kaladin", Vector2())
 	hero.hero_init()
 	
-	add_child(spirit)
+	world.add_child(spirit)
 	spirit.init("Spirit", "Syl", Vector2())
 	spirit.spirit_init()
 	
