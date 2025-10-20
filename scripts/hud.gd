@@ -6,6 +6,7 @@ var slot_scene = preload("res://scenes/slot.tscn")
 
 var main : Node
 var hero : Entity
+var spirit : Entity
 var slot : Sprite2D
 var heart : Sprite2D
 
@@ -17,9 +18,14 @@ var slotBar : HBoxContainer
 var slotBox : TextureRect
 var selectedSlot : int
 
+var spiritSlotBar : VBoxContainer
+var spiritSlotBox : TextureRect
+var spiritSelectedSlot : int
+
 const heartBarLength = 256
 const heartBarPos = Vector2(64,476)
 const slotBarPos = Vector2(380,508)
+const spiritSlotBarPos = Vector2(928,64)
 
 const tRes = 32
 const numActions = 5
@@ -28,6 +34,7 @@ const slotSeparation = 5
 func init():
 	main = get_parent()
 	hero = main.hero
+	spirit = main.spirit
 
 	heartBar = HBoxContainer.new()
 	add_child(heartBar)
@@ -54,6 +61,22 @@ func init():
 		slotBar.add_child(newBox)
 	selectedSlot = hero.STATUS["activeSlot"]
 	select_slot(selectedSlot)
+
+	# Spirit action bar (vertical)
+	spiritSlotBar = VBoxContainer.new()
+	add_child(spiritSlotBar)
+	spiritSlotBar.position = spiritSlotBarPos
+	spiritSlotBox = TextureRect.new()
+	var spiritSlot = slot_scene.instantiate()
+	spiritSlotBox.add_child(spiritSlot)
+	spiritSlot.init()
+	spiritSlotBar.add_theme_constant_override("separation", int(tRes+slotSeparation))
+
+	for i in numActions:
+		var newBox = spiritSlotBox.duplicate()
+		spiritSlotBar.add_child(newBox)
+	spiritSelectedSlot = spirit.STATUS["activeSlot"]
+	select_spirit_slot(spiritSelectedSlot)
 
 func _physics_process(_delta):
 	if hero.STATUS["HP"] == 1: shake_hp()
@@ -102,4 +125,13 @@ func select_slot(i: int):
 
 func get_slot_sprite(i: int):
 	var sprite = slotBar.get_children()[i-1].get_node("Slot").get_node("actionSprite")
+	return sprite
+
+func select_spirit_slot(i: int):
+	spiritSlotBar.get_children()[spiritSelectedSlot-1].get_node("Slot").unselect()
+	spiritSelectedSlot = i
+	spiritSlotBar.get_children()[spiritSelectedSlot-1].get_node("Slot").select()
+
+func get_spirit_slot_sprite(i: int):
+	var sprite = spiritSlotBar.get_children()[i-1].get_node("Slot").get_node("actionSprite")
 	return sprite

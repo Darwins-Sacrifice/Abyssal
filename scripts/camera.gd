@@ -1,18 +1,22 @@
 extends Camera2D
 
-var main : Node
 var target : Entity
+var world : Node
+var main : Node
 
 func init():
-	main = get_parent()
-	target = main.hero
+	target = get_parent()
+	world = target.get_parent()
+	main = world.get_parent()
+	set_name("Camera")
 
-func _process(_delta):
+func _physics_process(_delta):
 	if !main.paused:
 		read_input()
-		position = target.position
+	global_position = target.global_position
 
 func read_input():
 		if Input.is_action_just_pressed("camera_swap"):
-			if target == main.hero: target = main.spirit
-			else: target = main.hero
+			if target == main.hero: reparent(main.spirit)
+			else: reparent(main.hero)
+			target = get_parent()

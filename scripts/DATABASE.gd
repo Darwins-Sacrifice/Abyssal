@@ -19,12 +19,19 @@ var ACTION_DATA = {  # All Actions In Game - title, row, column, targeted, toolt
 		targeted = false,
 		tooltip = "Instantly teleport forward a short distance increased by ability level."
 	},
-	heal_self = { 
+	heal_self = {
 		title = "Heal",
 		row = 1,
 		column = 4,
 		targeted = false,
 		tooltip = "Heal the caster by 1 hp."
+	},
+	hero_heal = {
+		title = "Heal Hero",
+		row = 1,
+		column = 4,
+		targeted = false,
+		tooltip = "Heal the hero by 1 hp."
 	},
 	hurt_self = { 
 		title = "Hurt Self",
@@ -39,6 +46,13 @@ var ACTION_DATA = {  # All Actions In Game - title, row, column, targeted, toolt
 		column = 5,
 		targeted = false,
 		tooltip = "Raise the caster's max hp by 1 hp permanently"
+	},
+	slash = { 
+		title = "Sword Attack",
+		row = 1,
+		column = 6,
+		targeted = false,
+		tooltip = "Slash sword in forward direction"
 	}
 }
 

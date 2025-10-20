@@ -7,6 +7,7 @@ var Our_Mountain = preload("res://assets/audio/Our Mountain.mp3")
 var hero_scene = preload("res://scenes/hero.tscn")
 var spirit_scene = preload("res://scenes/spirit.tscn")
 var hud_scene = preload("res://scenes/hud.tscn")
+var camera_scene = preload("res://scenes/camera.tscn")
 var pause_menu_scene = load("res://scenes/pause_menu.tscn") 
 var soldier_scene = preload("res://scenes/soldier.tscn")
 
@@ -14,21 +15,19 @@ var soldier_scene = preload("res://scenes/soldier.tscn")
 var hero = hero_scene.instantiate()
 var spirit = spirit_scene.instantiate()
 var hud = hud_scene.instantiate()
+var camera = camera_scene.instantiate()
 var pauseMenu = pause_menu_scene.instantiate()
 
 # Variables
 @onready var DATABASE = $DATABASE
 @onready var ACTION_DATA = $DATABASE.ACTION_DATA
 @onready var themeMusic = $ThemeMusic
-@onready var camera = $Camera
 @onready var world = $World_Map
 
 var clock : float = 0
 var paused : bool = false
 
 func _ready():
-	camera.init()
-
 	themeMusic.stream = Our_Mountain
 	themeMusic.volume_db = -5
 	themeMusic.play()
@@ -41,13 +40,21 @@ func _ready():
 	spirit.init("Spirit", "Syl", Vector2())
 	spirit.spirit_init()
 	
+	hero.add_child(camera)
+	camera.init()
+
 	add_child(hud)
 	hud.init()
 
-	var knownList = ["flash","nothing","heal_self","hurt_self","raise_max_hp"]
+	var knownList = ["flash","slash","heal_self","hurt_self","raise_max_hp"]
 	hero.learn_action_set(knownList)
-	var equippedList = ["flash","nothing","heal_self","hurt_self","raise_max_hp"]
+	var equippedList = ["slash","flash","heal_self","hurt_self","raise_max_hp"]
 	hero.equip_action_set(equippedList)
+
+	var spiritKnownList = ["hero_heal"]
+	spirit.learn_action_set(spiritKnownList)
+	var spiritEquippedList = ["hero_heal", "nothing", "nothing", "nothing", "nothing"]
+	spirit.equip_action_set(spiritEquippedList)
 
 func _process(delta):
 	if !paused:

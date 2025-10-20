@@ -1,80 +1,85 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1740722084
-::res://addons/::1740722036
-::res://addons/AS2P/::1740722036
+::res://::1760999639
+::res://addons/::1760993084
+::res://addons/AS2P/::1760993084
 InspectorConvertor.gd::GDScript::-1::1740722036::0::1::::<>EditorInspectorPlugin<>::
 NodeSelectorProperty.gd::GDScript::-1::1740722036::0::1::::<>EditorProperty<>::
 plugin.cfg::TextFile::-1::1740722036::0::1::::<><>::
 plugin.gd::GDScript::-1::1740722036::0::1::::<>EditorPlugin<>::
-::res://assets/::1740108389
-::res://assets/audio/::1739587185
-Our Mountain.mp3::AudioStreamMP3::6607093269734803688::1739225137::1739587185::1::::<><>::
-::res://assets/image/::1740727793
-Action_tileset.png::CompressedTexture2D::8725599992773631531::1740108432::1740108597::1::::<><>::
-Background.jpg::CompressedTexture2D::3021101946656082060::1740168446::1740168449::1::::<><>::
-Blake_anim.png::CompressedTexture2D::261213983023426574::1739514323::1739587185::1::::<><>::
-HUD_tileset.png::CompressedTexture2D::5419582851621341987::1739853591::1739854103::1::::<><>::
-icon.png::CompressedTexture2D::7614871336762869891::1739225138::1739587185::1::::<><>::
-Main_title.png::CompressedTexture2D::4243955273934553311::1740333435::1740333496::1::::<><>::
-Soldier_anim.png::CompressedTexture2D::1831990601001694492::1739514325::1740727796::1::::<><>::
-Spirit_anim.png::CompressedTexture2D::5492493694205125703::1739337835::1739587185::1::::<><>::
-TX Plant.png::CompressedTexture2D::7620125797034402849::1739225138::1739587186::1::::<><>::
-TX Props.png::CompressedTexture2D::8885217811001561506::1739225138::1739587186::1::::<><>::
-TX Shadow Plant.png::CompressedTexture2D::5397132968579522921::1739225138::1739587185::1::::<><>::
-TX Shadow.png::CompressedTexture2D::1386768454661942201::1739225138::1739587185::1::::<><>::
-TX Struct.png::CompressedTexture2D::5797358975754246703::1739225138::1739587186::1::::<><>::
-TX Tileset Grass.png::CompressedTexture2D::8272601962730333504::1739225138::1739587185::1::::<><>::
-TX Tileset Stone Ground.png::CompressedTexture2D::8870547422131504414::1739225138::1739587185::1::::<><>::
-TX Tileset Wall.png::CompressedTexture2D::6229286927816893457::1739225138::1740186794::1::::<><>::
-::res://assets/image/Piskel/::1740168288
-::res://assets/sprite/::1740727668
-hero.tres::SpriteFrames::5767432216886814863::1740721103::0::1::::<><>::uid://dysfkq15ueb3::::res://assets/image/Blake_anim.png
-soldier.tres::SpriteFrames::396106589202386068::1740727668::0::1::::<><>::uid://dysfkq15ueb3::::res://assets/image/Blake_anim.png
-spirit.tres::SpriteFrames::2626002680837370115::1740727556::0::1::::<><>::uid://ckiutlnn2n7vf::::res://assets/image/Spirit_anim.png
-::res://assets/tilemap/::1740714063
-grass.tres::TileSet::6165141408906097337::1740714063::0::1::::<><>::uid://dp4kss2tbf1pc::::res://assets/image/TX Tileset Grass.png
-obstacle.tres::TileSet::5349855303390644602::1740714063::0::1::::<><>::uid://dym7vc1a34eda::::res://assets/image/TX Tileset Stone Ground.png
-::res://scenes/::1740727566
-camera.tscn::PackedScene::7614194122918849415::1740251011::0::1::::<><>::res://scripts/camera.gd
-DATABASE.tscn::PackedScene::3093644797741371595::1740242071::0::1::::<><>::res://scripts/DATABASE.gd
-entity.tscn::PackedScene::5537353581578234233::1740727566::0::1::::<><>::res://scripts/entity.gd
-heart.tscn::PackedScene::8536035908632411869::1740241969::0::1::::<><>::res://scripts/heart.gd
-hero.tscn::PackedScene::6603727605852990189::1740727566::0::1::::<><>::res://scripts/hero.gd<>uid://cof11bqcj7y4f::::res://assets/sprite/hero.tres
-hud.tscn::PackedScene::604615410456997771::1740241957::0::1::::<><>::res://scripts/hud.gd
-main.tscn::PackedScene::7692935090716979355::1740727566::0::1::::<><>::res://scripts/main.gd<>uid://cihrlnru3k5uk::::res://assets/tilemap/obstacle.tres<>uid://ct3o8i41n5ky8::::res://assets/tilemap/grass.tres<>res://scripts/camera.gd<>uid://bkct431kayffn::::res://scenes/DATABASE.tscn
-main_menu.tscn::PackedScene::5867929493907279001::1740727566::0::1::::<><>::uid://bjbpdwp8ggwnk::::res://assets/image/Background.jpg<>res://scripts/main_menu.gd<>uid://c1er4jeu82joa::::res://assets/audio/Our Mountain.mp3<>uid://b1p2k80ptj0r8::::res://assets/image/Main_title.png
-options_menu.tscn::PackedScene::4577625766584100032::1740242697::0::1::::<><>::res://scripts/options_menu.gd
+::res://assets/::1760993617
+::res://assets/audio/::1760993889
+Our Mountain.mp3::AudioStreamMP3::6607093269734803688::1739225136::1760993889::1::::<><>::
+::res://assets/image/::1760993890
+Action_tileset.png::CompressedTexture2D::8725599992773631531::1760993629::1760993889::1::::<><>::
+Background.jpg::CompressedTexture2D::3021101946656082060::1740168446::1760993890::1::::<><>::
+Blake_anim.png::CompressedTexture2D::261213983023426574::1739514322::1760993889::1::::<><>::
+HUD_tileset.png::CompressedTexture2D::5419582851621341987::1739853590::1760993889::1::::<><>::
+icon.png::CompressedTexture2D::7614871336762869891::1739225138::1760993889::1::::<><>::
+Main_title.png::CompressedTexture2D::4243955273934553311::1740333434::1760993889::1::::<><>::
+Soldier_anim.png::CompressedTexture2D::1831990601001694492::1739514324::1760993889::1::::<><>::
+Spirit_anim.png::CompressedTexture2D::5492493694205125703::1739337834::1760993889::1::::<><>::
+TX Plant.png::CompressedTexture2D::7620125797034402849::1739225138::1760993889::1::::<><>::
+TX Props.png::CompressedTexture2D::8885217811001561506::1739225138::1760993889::1::::<><>::
+TX Shadow Plant.png::CompressedTexture2D::5397132968579522921::1739225138::1760993889::1::::<><>::
+TX Shadow.png::CompressedTexture2D::1386768454661942201::1739225138::1760993889::1::::<><>::
+TX Struct.png::CompressedTexture2D::5797358975754246703::1739225138::1760993889::1::::<><>::
+TX Tileset Grass.png::CompressedTexture2D::8272601962730333504::1739225138::1760993889::1::::<><>::
+TX Tileset Stone Ground.png::CompressedTexture2D::8870547422131504414::1739225138::1760993889::1::::<><>::
+TX Tileset Wall.png::CompressedTexture2D::6229286927816893457::1739225138::1760993889::1::::<><>::
+::res://assets/image/Piskel/::1760993657
+::res://assets/sprite/::1760993962
+hero.tres::SpriteFrames::5767432216886814863::1760993962::0::1::::<><>::uid://dysfkq15ueb3::::res://assets/image/Blake_anim.png
+soldier.tres::SpriteFrames::396106589202386068::1760993962::0::1::::<><>::uid://1dou843x1k1a::::res://assets/image/Soldier_anim.png
+spirit.tres::SpriteFrames::2626002680837370115::1760993962::0::1::::<><>::uid://ckiutlnn2n7vf::::res://assets/image/Spirit_anim.png
+::res://assets/tilemap/::1760993962
+grass.tres::TileSet::6165141408906097337::1760993962::0::1::::<><>::uid://dp4kss2tbf1pc::::res://assets/image/TX Tileset Grass.png
+obstacle.tres::TileSet::5349855303390644602::1760993962::0::1::::<><>::uid://dym7vc1a34eda::::res://assets/image/TX Tileset Stone Ground.png
+::res://scenes/::1760994256
+camera.tscn::PackedScene::7614194122918849415::1740251010::0::1::::<><>::res://scripts/camera.gd
+DATABASE.tscn::PackedScene::3093644797741371595::1740242070::0::1::::<><>::res://scripts/DATABASE.gd
+entity.tscn::PackedScene::5537353581578234233::1760994256::0::1::::<><>::res://scripts/entity.gd
+heart.tscn::PackedScene::8536035908632411869::1740241968::0::1::::<><>::res://scripts/heart.gd
+hero.tscn::PackedScene::6603727605852990189::1760994256::0::1::::<><>::res://scripts/hero.gd<>uid://cof11bqcj7y4f::::res://assets/sprite/hero.tres<>res://scripts/hurtbox.gd
+hud.tscn::PackedScene::604615410456997771::1740936318::0::1::::<><>::res://scripts/hud.gd
+main.tscn::PackedScene::7692935090716979355::1760994256::0::1::::<><>::res://scripts/main.gd<>uid://cihrlnru3k5uk::::res://assets/tilemap/obstacle.tres<>uid://ct3o8i41n5ky8::::res://assets/tilemap/grass.tres<>uid://cworspt8gjjej::::res://scenes/soldier.tscn<>uid://bkct431kayffn::::res://scenes/DATABASE.tscn
+main_menu.tscn::PackedScene::5867929493907279001::1740727902::0::1::::<><>::uid://bjbpdwp8ggwnk::::res://assets/image/Background.jpg<>res://scripts/main_menu.gd<>uid://c1er4jeu82joa::::res://assets/audio/Our Mountain.mp3<>uid://b1p2k80ptj0r8::::res://assets/image/Main_title.png
+options_menu.tscn::PackedScene::4577625766584100032::1740242696::0::1::::<><>::res://scripts/options_menu.gd
 pause_menu.tscn::PackedScene::4817981735195599333::1740242776::0::1::::<><>::res://scripts/pause_menu.gd
 slot.tscn::PackedScene::7420310634068943300::1740272068::0::1::::<><>::res://scripts/slot.gd
-soldier.tscn::PackedScene::6346962367856356797::1740726085::0::1::::<><>::res://scripts/soldier.gd<>res://assets/sprite/soldier.tres
-spirit.tscn::PackedScene::2646834795418338998::1740727566::0::1::::<><>::res://scripts/spirit.gd<>uid://bdob46307hvvn::::res://assets/sprite/spirit.tres
-::res://scenes/actions/::1740247611
-::res://scenes/actions/flash/::1740242347
-flash.gd::GDScript::-1::1740723353::0::1::::<>Node2D<>::
-flash.tscn::PackedScene::507864625373026637::1740242347::0::1::::<><>::res://scenes/actions/flash/flash.gd
-::res://scenes/actions/heal_self/::1740242348
-heal_self.gd::GDScript::-1::1740348410::0::1::::<>Node2D<>::
+soldier.tscn::PackedScene::6346962367856356797::1760994256::0::1::::<><>::res://scripts/soldier.gd<>uid://fv422hafn2qq::::res://assets/sprite/soldier.tres<>res://scripts/hurtbox.gd<>res://scripts/hitbox.gd
+spirit.tscn::PackedScene::2646834795418338998::1760994256::0::1::::<><>::res://scripts/spirit.gd<>uid://bdob46307hvvn::::res://assets/sprite/spirit.tres
+::res://scenes/actions/::1760993917
+::res://scenes/actions/flash/::1760996812
+flash.gd::GDScript::-1::1760996839::0::1::::<>Node2D<>::
+flash.tscn::PackedScene::507864625373026637::1740242346::0::1::::<><>::res://scenes/actions/flash/flash.gd
+::res://scenes/actions/heal_self/::1760993084
+heal_self.gd::GDScript::-1::1740728402::0::1::::<>Node2D<>::
 heal_self.tscn::PackedScene::7704288393715698069::1740242348::0::1::::<><>::res://scenes/actions/heal_self/heal_self.gd
-::res://scenes/actions/hurt_self/::1740242349
-hurt_self.gd::GDScript::-1::1740348406::0::1::::<>Node2D<>::
-hurt_self.tscn::PackedScene::7704288393715698069::1740242349::0::1::::<><>::res://scenes/actions/hurt_self/hurt_self.gd
-::res://scenes/actions/nothing/::1740242349
-nothing.gd::GDScript::-1::1740348403::0::1::::<>Node2D<>::
-nothing.tscn::PackedScene::7704288393715698069::1740242349::0::1::::<><>::res://scenes/actions/nothing/nothing.gd
-::res://scenes/actions/raise_max_hp/::1740242350
-raise_max_hp.gd::GDScript::-1::1740348961::0::1::::<>Node2D<>::
+::res://scenes/actions/hurt_self/::1760993084
+hurt_self.gd::GDScript::-1::1740728326::0::1::::<>Node2D<>::
+hurt_self.tscn::PackedScene::7704288393715698069::1740242348::0::1::::<><>::res://scenes/actions/hurt_self/hurt_self.gd
+::res://scenes/actions/nothing/::1760993962
+nothing.gd::GDScript::-1::1760993962::0::1::::<>Node2D<>::
+nothing.tscn::PackedScene::7704288393715698069::1740242348::0::1::::<><>::res://scenes/actions/nothing/nothing.gd
+::res://scenes/actions/raise_max_hp/::1760993084
+raise_max_hp.gd::GDScript::-1::1740728308::0::1::::<>Node2D<>::
 raise_max_hp.tscn::PackedScene::7704288393715698069::1740242350::0::1::::<><>::res://scenes/actions/raise_max_hp/raise_max_hp.gd
-::res://scripts/::1740726875
-camera.gd::GDScript::-1::1740334330::0::1::::<>Camera2D<>::
-DATABASE.gd::GDScript::-1::1740347429::0::1::::<>Node<>::
-entity.gd::GDScript::-1::1740726914::0::1::::Entity<>CharacterBody2D<>::
-heart.gd::GDScript::-1::1740272049::0::1::::<>Sprite2D<>::
-hero.gd::GDScript::-1::1740726875::0::1::::<>Entity<>::
-hud.gd::GDScript::-1::1740726914::0::1::::<>CanvasLayer<>::
-main.gd::GDScript::-1::1740721149::0::1::::<>Node<>::
-main_menu.gd::GDScript::-1::1740176453::0::1::::<>Control<>::
-options_menu.gd::GDScript::-1::1740176453::0::1::::<>Control<>::
-pause_menu.gd::GDScript::-1::1740190708::0::1::::<>Control<>::
-slot.gd::GDScript::-1::1740242847::0::1::::<>Sprite2D<>::
-soldier.gd::GDScript::-1::1740726010::0::1::::<>Entity<>::
-spirit.gd::GDScript::-1::1740726875::0::1::::<>Entity<>::
+::res://scenes/actions/slash/::1760994284
+slash.gd::GDScript::-1::1760993962::0::1::::<>Node2D<>::
+slash.tscn::PackedScene::2880477242034312069::1760994284::0::1::::<><>::res://scenes/actions/slash/slash.gd
+::res://scripts/::1760999134
+camera.gd::GDScript::-1::1740847458::0::1::::<>Camera2D<>::
+DATABASE.gd::GDScript::-1::1760994145::0::1::::<>Node<>::
+entity.gd::GDScript::-1::1760997791::0::1::::Entity<>CharacterBody2D<>::
+heart.gd::GDScript::-1::1740272048::0::1::::<>Sprite2D<>::
+hero.gd::GDScript::-1::1740965976::0::1::::<>Entity<>::
+hitbox.gd::GDScript::-1::1740937464::0::1::::Hitbox<>Area2D<>::
+hud.gd::GDScript::-1::1760998878::0::1::::<>CanvasLayer<>::
+hurtbox.gd::GDScript::-1::1760997599::0::1::::Hurtbox<>Area2D<>::
+main.gd::GDScript::-1::1760994339::0::1::::<>Node<>::
+main_menu.gd::GDScript::-1::1740845856::0::1::::<>Control<>::
+options_menu.gd::GDScript::-1::1740176452::0::1::::<>Control<>::
+pause_menu.gd::GDScript::-1::1740847396::0::1::::<>Control<>::
+slot.gd::GDScript::-1::1740242846::0::1::::<>Sprite2D<>::
+soldier.gd::GDScript::-1::1740966164::0::1::::<>Entity<>::
+spirit.gd::GDScript::-1::1760999134::0::1::::<>Entity<>::

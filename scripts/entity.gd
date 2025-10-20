@@ -1,39 +1,44 @@
 extends CharacterBody2D
 class_name Entity
 
-var INFO = {  #Entity Information - type, name, knownActions, spawnPoint
+var INFO = {
 	type = "_",
 	name = "_",
 	knownActions = [],
-	spawnPoint = Vector2()
-	}
+	spawnPoint = Vector2(),
+	hitSafety = false
+}
 
-var STATS = { #Entity Stats - maxHP, baseSpeed, runSpeed, runMod
+var STATS = {
 	maxHP = 1,
 	baseSpeed = 0,
 	runSpeed = 0,
 	runMod = 1
 }
 
-var STATUS = { #Entity Status - direction, HP, moving, running, casting
+var STATUS = {
 	direction = Vector2(),
 	HP = 1,
 	moving = false,
 	running = false,
-	casting = false
+	casting = false,
+	invincible = false
 }
 
 var main : Node
 var world : Node
+var raycast : RayCast2D
 var animationTree : AnimationTree
 var animationPlayer : AnimationPlayer
 var ACTION_DATA : Dictionary
+var invincibility_timer : float = 0.0
 
 func init(entityType: String, entityName: String, spawn: Vector2):
 	world = get_parent()
 	main = world.get_parent()
 	animationPlayer = get_node("AnimationPlayer")
 	animationTree = get_node("AnimationTree")
+	raycast = get_node("Raycast")
 	ACTION_DATA = main.ACTION_DATA
 	INFO["type"] = entityType
 	INFO["name"] = entityName
@@ -48,6 +53,7 @@ func init_stats():
 			STATS["maxHP"] = 10
 			STATS["baseSpeed"] = 96
 			STATS["runMod"] = 1.5
+			INFO["hitSafety"] = true
 		"Spirit":
 			STATS["baseSpeed"] = 216
 			STATS["runMod"] = 8
@@ -58,6 +64,16 @@ func init_stats():
 					STATS["baseSpeed"] = 48
 					STATS["runMod"] = 1.5
 	STATS["runSpeed"] = round(STATS["baseSpeed"] * STATS["runMod"])
+
+func _process(delta):
+	if invincibility_timer > 0:
+		invincibility_timer -= delta
+		if has_node("Sprite"):
+			get_node("Sprite").modulate.a = 0.5 if int(invincibility_timer * 20) % 2 == 0 else 1.0
+	else:
+		STATUS["invincible"] = false
+		if has_node("Sprite"):
+			get_node("Sprite").modulate.a = 1.0
 
 func move():
 	if STATUS["direction"] && !STATUS["casting"]:
@@ -100,7 +116,12 @@ func learn_action_set(actionSet: Array):
 		learn_action(actionSet[i])
 
 func take_damage(amt : int):
+	if STATUS["invincible"]:
+		return
 	STATUS["HP"] -= amt
+	if INFO["hitSafety"]:
+		STATUS["invincible"] = true
+		invincibility_timer = 0.5
 	if INFO["type"] == "Hero":
 		main.hud.adjust_hp(-amt)
 	if STATUS["HP"] <= 0: die()
