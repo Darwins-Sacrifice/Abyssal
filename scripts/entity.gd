@@ -6,7 +6,9 @@ var INFO = {
 	name = "_",
 	knownActions = [],
 	spawnPoint = Vector2(),
-	hitSafety = false
+	hitSafety = false,
+	range = 0,
+	vision = 0
 }
 
 var STATS = {
@@ -61,8 +63,10 @@ func init_stats():
 			match INFO["name"]:
 				"Soldier":
 					STATS["maxHP"] = 2
-					STATS["baseSpeed"] = 48
+					STATS["baseSpeed"] = 64
 					STATS["runMod"] = 1.5
+					INFO["range"] = 32
+					INFO["vision"] = 480
 	STATS["runSpeed"] = round(STATS["baseSpeed"] * STATS["runMod"])
 
 func _process(delta):

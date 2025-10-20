@@ -1,11 +1,23 @@
 extends Entity
 
 func _ready():
-	STATUS["targetPos"] = position
-	STATUS["range"] = 50
+	call_deferred("_deferred_init")
 
-#func _physics_process(_delta):
-	#if position.distance_to(main.hero.position) > STATUS["range"]:
-		#var tween = create_tween()
-		#STATUS["targetPos"] = main.hero.position -(main.hero.position-position).normalized()*Vector2(STATUS["range"],STATUS["range"])
-		#tween.tween_property(self, "position", STATUS["targetPos"], position.distance_to(STATUS["targetPos"] )/STATS["baseSpeed"])
+func _deferred_init():
+	init("Enemy", "Soldier", position)
+
+func _physics_process(_delta):
+	if main != null && main.hero != null:
+		var distance = position.distance_to(main.hero.position)
+
+		if distance < INFO["vision"]:
+			STATUS["direction"] = (main.hero.position - position).normalized()
+			if distance > INFO["range"]*2:
+				STATUS["running"] = true
+			else:
+				STATUS["running"] = false
+			move()
+		else:
+			STATUS["direction"] = Vector2()
+			STATUS["running"] = false
+			move()
