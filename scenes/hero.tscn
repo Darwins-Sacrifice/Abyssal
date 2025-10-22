@@ -333,10 +333,12 @@ animation = &"down_idle"
 offset = Vector2(0, -10)
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ufaeb")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_mask = 114
 script = ExtResource("3_hpcpd")
 
@@ -345,6 +347,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ufaeb")
 
 [node name="Raycast" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(0, 32)
 collision_mask = 102
 collide_with_areas = true

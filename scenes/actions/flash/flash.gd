@@ -41,10 +41,30 @@ func create_ghost_trail(caster:Entity):
 
 		var delay = t * 0.1
 
+		# Use a timer as fallback cleanup in case tween is interrupted
+		var cleanup_timer = Timer.new()
+		cleanup_timer.wait_time = delay + 0.6  # delay + tween duration + small buffer
+		cleanup_timer.one_shot = true
+		caster.add_child(cleanup_timer)
+
 		var tween = caster.world.create_tween()
 		tween.tween_interval(delay)
 		tween.set_parallel(true)
 		tween.tween_property(ghost, "modulate:a", 0, 0.5)
 		tween.tween_property(ghost, "scale", Vector2.ONE * 0.5, 0.5)
 		tween.tween_property(ghost, "position", Vector2.ZERO, 0.5)  # Converge to caster's origin
-		tween.chain().tween_callback(ghost.queue_free)
+		tween.chain().tween_callback(func():
+			if is_instance_valid(ghost):
+				ghost.queue_free()
+			if is_instance_valid(cleanup_timer):
+				cleanup_timer.queue_free()
+		)
+
+		# Fallback cleanup if tween is interrupted
+		cleanup_timer.timeout.connect(func():
+			if is_instance_valid(ghost):
+				ghost.queue_free()
+			if is_instance_valid(cleanup_timer):
+				cleanup_timer.queue_free()
+		)
+		cleanup_timer.start()

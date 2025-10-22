@@ -135,3 +135,22 @@ func select_spirit_slot(i: int):
 func get_spirit_slot_sprite(i: int):
 	var sprite = spiritSlotBar.get_children()[i-1].get_node("Slot").get_node("actionSprite")
 	return sprite
+
+func update_cooldown(i: int, time: float):
+	_update_slot_cooldown(slotBar, i, time)
+
+func update_spirit_cooldown(i: int, time: float):
+	_update_slot_cooldown(spiritSlotBar, i, time)
+
+func _update_slot_cooldown(bar: BoxContainer, i: int, time: float):
+	var slot_node = bar.get_children()[i-1].get_node("Slot")
+	var sprite = slot_node.get_node("actionSprite")
+	var label = slot_node.get_node("cooldownLabel")
+
+	if time > 0:
+		sprite.modulate.a = 0.4
+		label.text = str(ceil(time))
+		label.visible = true
+	else:
+		sprite.modulate.a = 1.0
+		label.visible = false

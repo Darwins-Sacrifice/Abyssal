@@ -24,6 +24,15 @@ tile_set = ExtResource("3_a701m")
 [node name="Soldier" parent="World_Map" instance=ExtResource("4_5xsh7")]
 position = Vector2(110, 58)
 
+[node name="Soldier2" parent="World_Map" instance=ExtResource("4_5xsh7")]
+position = Vector2(-112, 64)
+
+[node name="Soldier3" parent="World_Map" instance=ExtResource("4_5xsh7")]
+position = Vector2(-119, -61)
+
+[node name="Soldier4" parent="World_Map" instance=ExtResource("4_5xsh7")]
+position = Vector2(113, -57)
+
 [node name="DATABASE" parent="." instance=ExtResource("4_rjaqa")]
 
 [node name="ThemeMusic" type="AudioStreamPlayer" parent="."]

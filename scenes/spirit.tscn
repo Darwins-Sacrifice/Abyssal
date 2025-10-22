@@ -339,9 +339,11 @@ animation = &"down_idle"
 frame = 1
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_ebewe")
 
 [node name="Raycast" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(0, 32)
 collision_mask = 64
 collide_with_areas = true

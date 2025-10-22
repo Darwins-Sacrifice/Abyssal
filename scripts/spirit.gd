@@ -5,9 +5,18 @@ func spirit_init(): #Special Initialization for Spirit
 	STATUS["targetPos"] = position
 	STATUS["equippedActions"] = [null,null,null,null,null]
 	STATUS["activeSlot"] = 1
+	STATUS["action_cooldowns"] = [0.0, 0.0, 0.0, 0.0, 0.0]
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if !main.paused:
+		# Reduce cooldowns
+		for i in range(STATUS["action_cooldowns"].size()):
+			if STATUS["action_cooldowns"][i] > 0:
+				STATUS["action_cooldowns"][i] -= delta
+				if STATUS["action_cooldowns"][i] < 0:
+					STATUS["action_cooldowns"][i] = 0
+				main.hud.update_spirit_cooldown(i + 1, STATUS["action_cooldowns"][i])
+
 		read_input()
 		move()
 
@@ -41,7 +50,7 @@ func read_input():
 	if Input.is_action_just_pressed("cast_spirit"):
 		execute_action(STATUS["activeSlot"])
 
-	# Quick cast actions (mouse buttons 4-8)
+	# Quick cast actions
 	if Input.is_action_just_pressed("spirit_quick_cast_1"):
 		set_active_slot(1)
 		execute_action(1)
@@ -62,11 +71,33 @@ func execute_action(i: int):
 	var executableAct = STATUS["equippedActions"][i-1]
 	if executableAct == null:
 		return
+
+	# Check if action is on cooldown
+	if STATUS["action_cooldowns"][i-1] > 0:
+		return
+
 	var target = null
 	if ACTION_DATA[executableAct.key]["targeted"]:
-		# Get Target
-		pass
-	executableAct.cast(self, target, STATUS["direction"].normalized())
+		# Get target nearest to cursor within range
+		var cursor_pos = get_global_mouse_position()
+		var nearest_enemy = null
+		var nearest_distance = INF
+
+		for entity in world.get_children():
+			if entity is Entity and entity.INFO["type"] == "Enemy":
+				var dist_to_cursor = entity.global_position.distance_to(cursor_pos)
+				if dist_to_cursor <= INFO["range"] and dist_to_cursor < nearest_distance:
+					nearest_enemy = entity
+					nearest_distance = dist_to_cursor
+
+		target = nearest_enemy
+
+	# Cast the action
+	executableAct.cast(self, target, STATUS["facing_direction"])
+
+	# Start cooldown
+	STATUS["action_cooldowns"][i-1] = ACTION_DATA[executableAct.key]["cooldown"]
+	main.hud.update_spirit_cooldown(i, STATUS["action_cooldowns"][i-1])
 
 func set_active_slot(i: int):
 	STATUS["activeSlot"] = i
@@ -75,15 +106,5 @@ func set_active_slot(i: int):
 	main.hud.select_spirit_slot(STATUS["activeSlot"])
 
 func equip_action(actionKey: String, i : int):
-	var newAction = load_action(actionKey)
-	var equipable = false
-	for known in INFO["knownActions"]:
-		if known.key == newAction.key:
-			equipable = true
-	if equipable:
-		STATUS["equippedActions"][i-1] = newAction
-		main.hud.get_spirit_slot_sprite(i).region_rect = main.ACTION_DATA[newAction.key]["region"]
-
-func equip_action_set(actionSet: Array):
-	for i in actionSet.size():
-		equip_action(actionSet[i-1],i)
+	super.equip_action(actionKey, i)
+	main.hud.get_spirit_slot_sprite(i).region_rect = main.ACTION_DATA[actionKey]["region"]

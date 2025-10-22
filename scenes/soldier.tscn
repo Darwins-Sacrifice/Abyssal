@@ -338,10 +338,12 @@ animation = &"down_idle"
 offset = Vector2(0, -10)
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3xnny")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_mask = 121
 script = ExtResource("3_8dv28")
 
@@ -350,6 +352,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3xnny")
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -15)
 collision_layer = 2
 script = ExtResource("3_u27ya")
@@ -361,6 +364,7 @@ shape = SubResource("CapsuleShape2D_o3bp4")
 debug_color = Color(0.822085, 0.349067, 0.520599, 0.42)
 
 [node name="Raycast" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(0, 32)
 collision_mask = 103
 collide_with_areas = true

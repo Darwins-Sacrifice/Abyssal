@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
 boot_splash/image="res://assets/image/icon.png"
 config/icon="res://assets//image//icon.png"
 
+[autoload]
+
+DATABASE="*res://scenes/DATABASE.tscn"
+
 [display]
 
 window/size/viewport_width=960
